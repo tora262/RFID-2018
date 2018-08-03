@@ -36,7 +36,7 @@ namespace Reader_Express
         static System.Windows.Forms.Timer traningTimer = new System.Windows.Forms.Timer();
         static System.Windows.Forms.Timer inventoryTimer = new System.Windows.Forms.Timer();
         private static int timeDelay = 4000;
-        private static int inventoryTimeDelay = 2200;
+        private static int inventoryTimeDelay = 5000;
         private static int timeDelay_ = 1200;
         private static ArrayList arrRssi1 = new ArrayList();
         private static ArrayList arrRssi2 = new ArrayList();
@@ -297,6 +297,7 @@ namespace Reader_Express
                         //Received data are in the byte array (e.payload), it decodes into string using 
                         //following function.
                         string szPayload = Encoding.ASCII.GetString(e.Payload);
+                        Console.WriteLine("szPayload: " + szPayload);
                         // MessageBox.Show(szPayload);
                         //Many responses can be contained in the generated event and it separates first.
                         //Received data may contain tag ID, set value, response code, etc. according to call 
@@ -324,8 +325,10 @@ namespace Reader_Express
                         CipherAlgorithm ca = new CipherAlgorithm();
                         // lbxResponses.Items.Insert(0, szPayload);
                         string szTxt = string.Empty;
+                        Console.WriteLine("******************szRespones*****************");
                         foreach (string szResponse in szResponses)
                         {
+                            Console.WriteLine("Sub String :" + szResponse);
                             code = szResponse[nPos];
                             this.totalRead += 1;
                             //  code = 'R';

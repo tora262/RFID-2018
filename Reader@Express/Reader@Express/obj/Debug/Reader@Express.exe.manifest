@@ -862,14 +862,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Reader@Express.exe" size="141824">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Reader@Express.exe" size="144896">
       <assemblyIdentity name="Reader@Express" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/IIEz9F3ss8xw0a80GgiU3uEqOnyQ3hchuDpp2hoXSI=</dsig:DigestValue>
+        <dsig:DigestValue>2Qh6J9Yz12bMpMh87vF+kDU5tKDF0E/dETT7gtLvpa0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

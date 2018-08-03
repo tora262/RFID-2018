@@ -6,6 +6,7 @@ using System.Threading;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.IO;
+using System.Security.Cryptography;
 namespace Reader_Express
 {
     class CipherAlgorithm
@@ -35,6 +36,7 @@ namespace Reader_Express
                 MessageBox.Show("Cannot Close Connect: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #region Old Encryption and Decryption
         /**************************************Cryptography**************************************************/
         /** Read File Function
          *  Read file from hardist and write each line to List
@@ -519,5 +521,45 @@ namespace Reader_Express
             return result;
 
         }
+        #endregion
+
+        #region symmetric-key encryption and decryption
+        public string Encrypt(string inputStr, string keyStr)
+        {
+            byte[] inputArr = UTF8Encoding.UTF8.GetBytes(inputStr);
+            TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
+            tripleDES.Key = UTF8Encoding.UTF8.GetBytes(keyStr);
+            tripleDES.Mode = CipherMode.ECB;
+            tripleDES.Padding = PaddingMode.PKCS7;
+            ICryptoTransform cTrans = tripleDES.CreateEncryptor();
+            byte[] resultArr = cTrans.TransformFinalBlock(inputArr, 0, inputArr.Length);
+            tripleDES.Clear();
+            return Convert.ToBase64String(resultArr, 0, resultArr.Length);
+        }
+
+        public string Decrypt(string inputStr, string keyStr)
+        {
+            byte[] inputArray = Convert.FromBase64String(inputStr);
+            TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
+            tripleDES.Key = UTF8Encoding.UTF8.GetBytes(keyStr);
+            tripleDES.Mode = CipherMode.ECB;
+            tripleDES.Padding = PaddingMode.PKCS7;
+            ICryptoTransform cTransform = tripleDES.CreateDecryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
+            tripleDES.Clear();
+            return UTF8Encoding.UTF8.GetString(resultArray);
+        }
+        public string randomKeyCode()
+        {
+            string key = string.Empty;
+            Random rd = new Random();
+            for (int i = 0; i < 16; i++)
+            {
+                char c = (char)rd.Next(33, 126);
+                key += c;
+            }
+            return key;
+        }
+        #endregion
     }
 }

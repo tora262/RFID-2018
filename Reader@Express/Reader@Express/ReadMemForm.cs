@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using idro.reader.api;
 using System.Runtime.InteropServices;
+using MySql.Data.MySqlClient;
 
 namespace Reader_Express
 {
@@ -59,6 +60,32 @@ namespace Reader_Express
             }
         }
         Reader reader = null;
+        string szTID = string.Empty;
+        static String connString = "Server=localhost;Database=cryptography;Port=3306;User ID=root;Password=1969626298";
+        MySqlConnection con = new MySqlConnection(connString);
+        MySqlCommand cmd;
+        public void OpenConnection()
+        {
+            try
+            {
+                con.Open();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Cannot Connected Server: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void CloseConnection()
+        {
+            try
+            {
+                con.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Cannot Close Connect: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #region P/Invoke...
         [DllImport("User32.dll")]
         static extern Boolean MessageBeep(UInt32 beepType);
@@ -100,14 +127,19 @@ namespace Reader_Express
                 case EventType.ReadMemory:
                     {
                         string result = Encoding.ASCII.GetString(e.Payload);
-                        tbReadResult.Text = result == "1C00" || result == "1T00" ? "Error: over length" : result.Substring(2, result.Length - 2);
+                        tbReadResult.Text = result == "1C00" || result == "1T00" ? "Error: over length" : result/*result.Substring(2, result.Length - 2)*/;
                         //tbReadResult.Text = result;
+                        //if (result[2] == 'E')
+                        //    szTID = result;
                         break;
                     }
                 case EventType.WriteMemory:
                     {
-                        lbWriteResult.Text = navigationPane1.SelectedPageIndex == 1? "Success" : "";
+                        lbWriteResult.Text = navigationPane1.SelectedPageIndex == 1 ? "Success" : "";
                         lbWriteTextResult.Text = navigationPane1.SelectedPageIndex == 2 ? "Success" : "";
+                        //string result = Encoding.ASCII.GetString(e.Payload);
+                        //lbWriteResult.Text = navigationPane1.SelectedPageIndex == 1 ? result : "";
+                        //lbWriteTextResult.Text = navigationPane1.SelectedPageIndex == 2 ? result : "";
                         break;
                     }
             }
@@ -123,7 +155,7 @@ namespace Reader_Express
         {
             switch (navigationPane1.SelectedPageIndex)
             {
-                case 0:
+                case 0://Read data
                     {
                         string memType = cbReadMemType.Text;
                         uint location = (uint)tbReadLocation.Value;
@@ -146,7 +178,7 @@ namespace Reader_Express
                         }
                         break;
                     }
-                case 1:
+                case 1://Write Data
                     {
                         string memType = cbWriteMemType.Text;
                         uint location = (uint)tbWriteLocation.Value;
@@ -167,20 +199,40 @@ namespace Reader_Express
                         }
                         break;
                     }
-                case 2:
+                case 2://Write TEXT
                     {
                         string szData = tbWriteTextData.Text;
-                        try
-                        {
-                            reader.WriteMemory(szData);
-                        }
-                        catch
-                        {
-                            lbWriteTextResult.Text = "Error";
-                        }
+                        //CipherAlgorithm ca = new CipherAlgorithm();
+                        //string key = ca.randomKeyCode();
+                        //string szCipher = ca.Encrypt(szData, key);
+                        //Console.WriteLine(szCipher);
+                        //reader.WriteMemory(szCipher);
+                        ////reader.ReadMemory(MemoryType.TID, 0, 12);
+                        //string sql = "INSERT INTO cryptography.keycode(code, time_generate, TID) VALUE('" + key + "', '" + DateTime.Now + "', '" + szTID + "')";
+                        //cmd = new MySqlCommand(sql, con);
+                        //MySqlDataReader my_reader;
+                        //try
+                        //{
+                        //    OpenConnection();
+                        //    my_reader = cmd.ExecuteReader();
+                        //    CloseConnection();
+                        //}
+                        //catch (MySqlException ex)
+                        //{
+                        //    MessageBox.Show("Cannot Excute Command: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    CloseConnection();
+                        //}
+                        reader.WriteMemory(szData);
                         break;
                     }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //EncryptForm ef = new EncryptForm();
+            //ef.ShowDialog();
+            tbReadResult.Text = "";
         }
     }
 }

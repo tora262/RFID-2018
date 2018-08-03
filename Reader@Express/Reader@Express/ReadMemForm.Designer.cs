@@ -38,11 +38,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.navigationPane1 = new DevExpress.XtraBars.Navigation.NavigationPane();
             this.navPageRead = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.tbReadResult = new System.Windows.Forms.RichTextBox();
             this.navPageWrite = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.tbWriteData = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tbWriteLength = new System.Windows.Forms.NumericUpDown();
+            this.lbWriteResult = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cbWriteMemType = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -58,10 +60,9 @@
             this.tbWriteTextLocation = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
-            this.lbWriteResult = new System.Windows.Forms.Label();
-            this.tbReadResult = new System.Windows.Forms.RichTextBox();
             this.btnExe = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tbReadLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbReadLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPane1)).BeginInit();
@@ -177,6 +178,17 @@
             this.navPageRead.Name = "navPageRead";
             this.navPageRead.Size = new System.Drawing.Size(366, 209);
             // 
+            // tbReadResult
+            // 
+            this.tbReadResult.BackColor = System.Drawing.SystemColors.Menu;
+            this.tbReadResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbReadResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbReadResult.Location = new System.Drawing.Point(143, 95);
+            this.tbReadResult.Name = "tbReadResult";
+            this.tbReadResult.Size = new System.Drawing.Size(205, 53);
+            this.tbReadResult.TabIndex = 9;
+            this.tbReadResult.Text = "";
+            // 
             // navPageWrite
             // 
             this.navPageWrite.Caption = "Write";
@@ -192,7 +204,6 @@
             this.navPageWrite.Controls.Add(this.label9);
             this.navPageWrite.Name = "navPageWrite";
             this.navPageWrite.Size = new System.Drawing.Size(366, 209);
-            
             // 
             // tbWriteData
             // 
@@ -230,6 +241,15 @@
             this.tbWriteLength.Size = new System.Drawing.Size(106, 22);
             this.tbWriteLength.TabIndex = 12;
             // 
+            // lbWriteResult
+            // 
+            this.lbWriteResult.AutoSize = true;
+            this.lbWriteResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWriteResult.Location = new System.Drawing.Point(141, 145);
+            this.lbWriteResult.Name = "lbWriteResult";
+            this.lbWriteResult.Size = new System.Drawing.Size(0, 16);
+            this.lbWriteResult.TabIndex = 19;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -254,7 +274,6 @@
             this.cbWriteMemType.Name = "cbWriteMemType";
             this.cbWriteMemType.Size = new System.Drawing.Size(106, 24);
             this.cbWriteMemType.TabIndex = 10;
-            
             // 
             // label8
             // 
@@ -297,7 +316,6 @@
             this.navPageWriteText.Controls.Add(this.label13);
             this.navPageWriteText.Name = "navPageWriteText";
             this.navPageWriteText.Size = new System.Drawing.Size(366, 209);
-            
             // 
             // tbWriteTextData
             // 
@@ -379,26 +397,6 @@
             this.label13.TabIndex = 18;
             this.label13.Text = "Result:";
             // 
-            // lbWriteResult
-            // 
-            this.lbWriteResult.AutoSize = true;
-            this.lbWriteResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbWriteResult.Location = new System.Drawing.Point(141, 145);
-            this.lbWriteResult.Name = "lbWriteResult";
-            this.lbWriteResult.Size = new System.Drawing.Size(0, 16);
-            this.lbWriteResult.TabIndex = 19;
-            // 
-            // tbReadResult
-            // 
-            this.tbReadResult.BackColor = System.Drawing.SystemColors.Menu;
-            this.tbReadResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbReadResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbReadResult.Location = new System.Drawing.Point(143, 95);
-            this.tbReadResult.Name = "tbReadResult";
-            this.tbReadResult.Size = new System.Drawing.Size(205, 53);
-            this.tbReadResult.TabIndex = 9;
-            this.tbReadResult.Text = "";
-            // 
             // btnExe
             // 
             this.btnExe.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -421,17 +419,27 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(205, 299);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Clear Result";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ReadMemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 334);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnExe);
             this.Controls.Add(this.navigationPane1);
             this.Name = "ReadMemForm";
             this.Text = "Access Operation";
-            
             ((System.ComponentModel.ISupportInitialize)(this.tbReadLocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbReadLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPane1)).EndInit();
@@ -485,5 +493,6 @@
         private System.Windows.Forms.Label lbWriteResult;
         private DevExpress.XtraEditors.SimpleButton btnExe;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private System.Windows.Forms.Button button1;
     }
 }

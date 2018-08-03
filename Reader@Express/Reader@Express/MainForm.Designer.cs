@@ -144,6 +144,11 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.toolStripLabel9 = new System.Windows.Forms.ToolStripLabel();
+            this.tbTime = new System.Windows.Forms.ToolStripTextBox();
+            this.tbTime1 = new System.Windows.Forms.ToolStripTextBox();
+            this.tbTime2 = new System.Windows.Forms.ToolStripTextBox();
+            this.tbTime3 = new System.Windows.Forms.ToolStripTextBox();
             this.tsMain.SuspendLayout();
             this.tsFunctions.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -168,7 +173,7 @@
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Padding = new System.Windows.Forms.Padding(3, 2, 1, 2);
-            this.tsMain.Size = new System.Drawing.Size(920, 27);
+            this.tsMain.Size = new System.Drawing.Size(1073, 27);
             this.tsMain.TabIndex = 0;
             this.tsMain.Text = "TSMain";
             this.tsMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsMain_ItemClicked);
@@ -631,7 +636,7 @@
             this.lbxResponses.FormattingEnabled = true;
             this.lbxResponses.Location = new System.Drawing.Point(108, 160);
             this.lbxResponses.Name = "lbxResponses";
-            this.lbxResponses.Size = new System.Drawing.Size(806, 264);
+            this.lbxResponses.Size = new System.Drawing.Size(965, 264);
             this.lbxResponses.TabIndex = 1;
             this.lbxResponses.SelectedIndexChanged += new System.EventHandler(this.lbxResponses_SelectedIndexChanged);
             // 
@@ -649,10 +654,11 @@
             this.toolStripLabel7,
             this.toolStripSeparator14,
             this.toolStripLabel8,
-            this.toolStripSeparator19});
+            this.toolStripSeparator19,
+            this.toolStripLabel9});
             this.toolStrip1.Location = new System.Drawing.Point(108, 27);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(812, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(965, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -740,10 +746,11 @@
             this.tbRead,
             this.tbPosition,
             this.toolStripSeparator17,
-            this.toolStripSeparator15});
+            this.toolStripSeparator15,
+            this.tbTime});
             this.tsDisplay.Location = new System.Drawing.Point(108, 52);
             this.tsDisplay.Name = "tsDisplay";
-            this.tsDisplay.Size = new System.Drawing.Size(812, 25);
+            this.tsDisplay.Size = new System.Drawing.Size(965, 25);
             this.tsDisplay.TabIndex = 4;
             this.tsDisplay.Text = "toolStrip2";
             // 
@@ -830,10 +837,11 @@
             this.tbRead1,
             this.tbPosition1,
             this.toolStripSeparator18,
-            this.toolStripSeparator16});
+            this.toolStripSeparator16,
+            this.tbTime1});
             this.toolStrip2.Location = new System.Drawing.Point(108, 77);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(812, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(965, 25);
             this.toolStrip2.TabIndex = 5;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -919,10 +927,11 @@
             this.tbRead2,
             this.tbPosition2,
             this.toolStripSeparator25,
-            this.toolStripSeparator24});
+            this.toolStripSeparator24,
+            this.tbTime2});
             this.toolStrip3.Location = new System.Drawing.Point(108, 102);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(812, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(965, 25);
             this.toolStrip3.TabIndex = 6;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -1009,10 +1018,11 @@
             this.tbRead3,
             this.tbPosition3,
             this.toolStripSeparator31,
-            this.toolStripSeparator30});
+            this.toolStripSeparator30,
+            this.tbTime3});
             this.toolStrip4.Location = new System.Drawing.Point(108, 127);
             this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(812, 25);
+            this.toolStrip4.Size = new System.Drawing.Size(965, 25);
             this.toolStrip4.TabIndex = 7;
             this.toolStrip4.Text = "toolStrip4";
             // 
@@ -1123,12 +1133,38 @@
             this.textBox4.Size = new System.Drawing.Size(46, 20);
             this.textBox4.TabIndex = 12;
             // 
+            // toolStripLabel9
+            // 
+            this.toolStripLabel9.Name = "toolStripLabel9";
+            this.toolStripLabel9.Size = new System.Drawing.Size(34, 22);
+            this.toolStripLabel9.Text = "Time";
+            // 
+            // tbTime
+            // 
+            this.tbTime.Name = "tbTime";
+            this.tbTime.Size = new System.Drawing.Size(100, 25);
+            // 
+            // tbTime1
+            // 
+            this.tbTime1.Name = "tbTime1";
+            this.tbTime1.Size = new System.Drawing.Size(100, 25);
+            // 
+            // tbTime2
+            // 
+            this.tbTime2.Name = "tbTime2";
+            this.tbTime2.Size = new System.Drawing.Size(100, 25);
+            // 
+            // tbTime3
+            // 
+            this.tbTime3.Name = "tbTime3";
+            this.tbTime3.Size = new System.Drawing.Size(100, 25);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(920, 504);
+            this.ClientSize = new System.Drawing.Size(1073, 504);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -1283,6 +1319,11 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ToolStripButton tsBtSendtoWeb;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel9;
+        private System.Windows.Forms.ToolStripTextBox tbTime;
+        private System.Windows.Forms.ToolStripTextBox tbTime1;
+        private System.Windows.Forms.ToolStripTextBox tbTime2;
+        private System.Windows.Forms.ToolStripTextBox tbTime3;
     }
 }
 
