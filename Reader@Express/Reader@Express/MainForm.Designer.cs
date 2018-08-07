@@ -89,6 +89,7 @@
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel8 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel9 = new System.Windows.Forms.ToolStripLabel();
             this.tsDisplay = new System.Windows.Forms.ToolStrip();
             this.tbTagId = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -101,6 +102,7 @@
             this.tbPosition = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbTime = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.tbTagId1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
@@ -113,6 +115,7 @@
             this.tbPosition1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbTime1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.tbTagId2 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
@@ -126,6 +129,7 @@
             this.tbPosition2 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbTime2 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.tbTagId3 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
@@ -139,16 +143,14 @@
             this.tbPosition3 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbTime3 = new System.Windows.Forms.ToolStripTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.toolStripLabel9 = new System.Windows.Forms.ToolStripLabel();
-            this.tbTime = new System.Windows.Forms.ToolStripTextBox();
-            this.tbTime1 = new System.Windows.Forms.ToolStripTextBox();
-            this.tbTime2 = new System.Windows.Forms.ToolStripTextBox();
-            this.tbTime3 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel10 = new System.Windows.Forms.ToolStripLabel();
+            this.lbCount = new System.Windows.Forms.ToolStripLabel();
             this.tsMain.SuspendLayout();
             this.tsFunctions.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -169,7 +171,9 @@
             this.tsCbbSerial,
             this.tsBtConnect,
             this.toolStripLabel1,
-            this.cbTextWrite});
+            this.cbTextWrite,
+            this.toolStripLabel10,
+            this.lbCount});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Padding = new System.Windows.Forms.Padding(3, 2, 1, 2);
@@ -198,7 +202,7 @@
             // tsModelIDRO900MA
             // 
             this.tsModelIDRO900MA.Name = "tsModelIDRO900MA";
-            this.tsModelIDRO900MA.Size = new System.Drawing.Size(140, 22);
+            this.tsModelIDRO900MA.Size = new System.Drawing.Size(152, 22);
             this.tsModelIDRO900MA.Tag = "IDRO900MA";
             this.tsModelIDRO900MA.Text = "IDRO900MA";
             this.tsModelIDRO900MA.Click += new System.EventHandler(this.tsModelType_Click);
@@ -206,7 +210,7 @@
             // tsModelIDRO900EA
             // 
             this.tsModelIDRO900EA.Name = "tsModelIDRO900EA";
-            this.tsModelIDRO900EA.Size = new System.Drawing.Size(140, 22);
+            this.tsModelIDRO900EA.Size = new System.Drawing.Size(152, 22);
             this.tsModelIDRO900EA.Tag = "IDRO900EA";
             this.tsModelIDRO900EA.Text = "IDRO900EA";
             this.tsModelIDRO900EA.Click += new System.EventHandler(this.tsModelType_Click);
@@ -214,12 +218,12 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // tsModelIDRO900F
             // 
             this.tsModelIDRO900F.Name = "tsModelIDRO900F";
-            this.tsModelIDRO900F.Size = new System.Drawing.Size(140, 22);
+            this.tsModelIDRO900F.Size = new System.Drawing.Size(152, 22);
             this.tsModelIDRO900F.Tag = "IDRO900F";
             this.tsModelIDRO900F.Text = "IDRO900F";
             this.tsModelIDRO900F.Click += new System.EventHandler(this.tsModelType_Click);
@@ -227,7 +231,7 @@
             // tsModelIDRO900F2
             // 
             this.tsModelIDRO900F2.Name = "tsModelIDRO900F2";
-            this.tsModelIDRO900F2.Size = new System.Drawing.Size(140, 22);
+            this.tsModelIDRO900F2.Size = new System.Drawing.Size(152, 22);
             this.tsModelIDRO900F2.Tag = "IDRO900F2";
             this.tsModelIDRO900F2.Text = "IDRO900F2";
             this.tsModelIDRO900F2.Click += new System.EventHandler(this.tsModelType_Click);
@@ -235,7 +239,7 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(137, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // toolStripSeparator1
             // 
@@ -261,14 +265,14 @@
             // tsConnectTcpIp
             // 
             this.tsConnectTcpIp.Name = "tsConnectTcpIp";
-            this.tsConnectTcpIp.Size = new System.Drawing.Size(113, 22);
+            this.tsConnectTcpIp.Size = new System.Drawing.Size(152, 22);
             this.tsConnectTcpIp.Text = "TCP/IP";
             this.tsConnectTcpIp.Click += new System.EventHandler(this.tsConnectType_Click);
             // 
             // tsConnectSerial
             // 
             this.tsConnectSerial.Name = "tsConnectSerial";
-            this.tsConnectSerial.Size = new System.Drawing.Size(113, 22);
+            this.tsConnectSerial.Size = new System.Drawing.Size(152, 22);
             this.tsConnectSerial.Text = "SERIAL";
             this.tsConnectSerial.Click += new System.EventHandler(this.tsConnectType_Click);
             // 
@@ -627,7 +631,7 @@
             // 
             this.tsLbState.Location = new System.Drawing.Point(0, 472);
             this.tsLbState.Name = "tsLbState";
-            this.tsLbState.Size = new System.Drawing.Size(914, 32);
+            this.tsLbState.Size = new System.Drawing.Size(1073, 32);
             this.tsLbState.TabIndex = 2;
             this.tsLbState.UseWaitCursor = true;
             // 
@@ -636,7 +640,7 @@
             this.lbxResponses.FormattingEnabled = true;
             this.lbxResponses.Location = new System.Drawing.Point(108, 160);
             this.lbxResponses.Name = "lbxResponses";
-            this.lbxResponses.Size = new System.Drawing.Size(965, 264);
+            this.lbxResponses.Size = new System.Drawing.Size(965, 303);
             this.lbxResponses.TabIndex = 1;
             this.lbxResponses.SelectedIndexChanged += new System.EventHandler(this.lbxResponses_SelectedIndexChanged);
             // 
@@ -733,6 +737,12 @@
             this.toolStripSeparator19.Name = "toolStripSeparator19";
             this.toolStripSeparator19.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripLabel9
+            // 
+            this.toolStripLabel9.Name = "toolStripLabel9";
+            this.toolStripLabel9.Size = new System.Drawing.Size(34, 22);
+            this.toolStripLabel9.Text = "Time";
+            // 
             // tsDisplay
             // 
             this.tsDisplay.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -824,6 +834,12 @@
             this.toolStripSeparator15.Name = "toolStripSeparator15";
             this.toolStripSeparator15.Size = new System.Drawing.Size(6, 25);
             // 
+            // tbTime
+            // 
+            this.tbTime.BackColor = System.Drawing.SystemColors.Control;
+            this.tbTime.Name = "tbTime";
+            this.tbTime.Size = new System.Drawing.Size(150, 25);
+            // 
             // toolStrip2
             // 
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -912,6 +928,12 @@
             // 
             this.toolStripSeparator16.Name = "toolStripSeparator16";
             this.toolStripSeparator16.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tbTime1
+            // 
+            this.tbTime1.BackColor = System.Drawing.SystemColors.Control;
+            this.tbTime1.Name = "tbTime1";
+            this.tbTime1.Size = new System.Drawing.Size(150, 25);
             // 
             // toolStrip3
             // 
@@ -1004,6 +1026,12 @@
             this.toolStripSeparator24.Name = "toolStripSeparator24";
             this.toolStripSeparator24.Size = new System.Drawing.Size(6, 25);
             // 
+            // tbTime2
+            // 
+            this.tbTime2.BackColor = System.Drawing.SystemColors.Control;
+            this.tbTime2.Name = "tbTime2";
+            this.tbTime2.Size = new System.Drawing.Size(150, 25);
+            // 
             // toolStrip4
             // 
             this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1094,10 +1122,16 @@
             this.toolStripSeparator30.Name = "toolStripSeparator30";
             this.toolStripSeparator30.Size = new System.Drawing.Size(6, 25);
             // 
+            // tbTime3
+            // 
+            this.tbTime3.BackColor = System.Drawing.SystemColors.Control;
+            this.tbTime3.Name = "tbTime3";
+            this.tbTime3.Size = new System.Drawing.Size(150, 25);
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Honeydew;
-            this.button1.Location = new System.Drawing.Point(558, 1);
+            this.button1.Location = new System.Drawing.Point(673, -2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
@@ -1107,57 +1141,43 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(639, 1);
+            this.textBox1.Location = new System.Drawing.Point(754, 0);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(46, 20);
             this.textBox1.TabIndex = 9;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(691, 0);
+            this.textBox2.Location = new System.Drawing.Point(806, 0);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(46, 20);
             this.textBox2.TabIndex = 10;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(743, 0);
+            this.textBox3.Location = new System.Drawing.Point(858, 0);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(46, 20);
             this.textBox3.TabIndex = 11;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(795, 0);
+            this.textBox4.Location = new System.Drawing.Point(910, 0);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(46, 20);
             this.textBox4.TabIndex = 12;
             // 
-            // toolStripLabel9
+            // toolStripLabel10
             // 
-            this.toolStripLabel9.Name = "toolStripLabel9";
-            this.toolStripLabel9.Size = new System.Drawing.Size(34, 22);
-            this.toolStripLabel9.Text = "Time";
+            this.toolStripLabel10.Name = "toolStripLabel10";
+            this.toolStripLabel10.Size = new System.Drawing.Size(61, 20);
+            this.toolStripLabel10.Text = "Tag/Read:";
             // 
-            // tbTime
+            // lbCount
             // 
-            this.tbTime.Name = "tbTime";
-            this.tbTime.Size = new System.Drawing.Size(100, 25);
-            // 
-            // tbTime1
-            // 
-            this.tbTime1.Name = "tbTime1";
-            this.tbTime1.Size = new System.Drawing.Size(100, 25);
-            // 
-            // tbTime2
-            // 
-            this.tbTime2.Name = "tbTime2";
-            this.tbTime2.Size = new System.Drawing.Size(100, 25);
-            // 
-            // tbTime3
-            // 
-            this.tbTime3.Name = "tbTime3";
-            this.tbTime3.Size = new System.Drawing.Size(100, 25);
+            this.lbCount.Name = "lbCount";
+            this.lbCount.Size = new System.Drawing.Size(30, 20);
+            this.lbCount.Text = ".../...";
             // 
             // mainForm
             // 
@@ -1324,6 +1344,8 @@
         private System.Windows.Forms.ToolStripTextBox tbTime1;
         private System.Windows.Forms.ToolStripTextBox tbTime2;
         private System.Windows.Forms.ToolStripTextBox tbTime3;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel10;
+        private System.Windows.Forms.ToolStripLabel lbCount;
     }
 }
 

@@ -112,6 +112,7 @@
     <Reference Include="DevExpress.XtraRichEdit.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="idro.controls, Version=1.0.3839.19499, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Library Dll\idro.controls.dll</HintPath>
@@ -160,6 +161,8 @@
       <DependentUpon>cell.cs</DependentUpon>
     </Compile>
     <Compile Include="CipherAlgorithm.cs" />
+    <Compile Include="DAL\DBMySqlUtils.cs" />
+    <Compile Include="DAL\DBUtils.cs" />
     <Compile Include="EncryptForm.cs">
       <SubType>Form</SubType>
     </Compile>

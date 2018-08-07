@@ -43,6 +43,7 @@ namespace Reader_Express
         private static ArrayList arrRssi3 = new ArrayList();
         private static ArrayList arrRssi4 = new ArrayList();
         ArrayList tagId = new ArrayList();
+        private List<string> listOfTagID = new List<string>();
         //new change
         //ArrayList tagId1 = new ArrayList();
         //List<String> t = new List<string>();
@@ -349,12 +350,14 @@ namespace Reader_Express
                                             case '1':
                                                 tbTagId.Text = szValue;
                                                 tbPort.Text = szResponse[0].ToString();
-                                                List<string> list = new List<string>();
-                                                for(int i = 0; i < szTxt.Length; i+=2){
-                                                    list.Add(szTxt.Substring(i, 2));
-                                                }
-                                                string temp = ca.substitutionCipherDecryption(ca.transpositionCipherDecryption(list), "ascii.txt");
-                                                tbText.Text = temp;
+                                                //List<string> list = new List<string>();
+                                                //for(int i = 0; i < szTxt.Length; i+=2){
+                                                //    list.Add(szTxt.Substring(i, 2));
+                                                //}
+                                                //string temp = ca.substitutionCipherDecryption(ca.transpositionCipherDecryption(list), "ascii.txt");
+                                                //tbText.Text = temp;
+                                                tbText.Text = szTxt;
+                                                tbTime.Text = DateTime.Now.ToString();
                                                 foreach (string value in tagId)
                                                 {
                                                     if (value.CompareTo(szValue) == 0)
@@ -366,6 +369,7 @@ namespace Reader_Express
                                                 if (flag1 == 0)
                                                 {
                                                     tagId.Add(szValue);
+
                                                 }
                                                 break;
                                             case '2':

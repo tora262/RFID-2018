@@ -127,7 +127,18 @@ namespace Reader_Express
                 case EventType.ReadMemory:
                     {
                         string result = Encoding.ASCII.GetString(e.Payload);
-                        tbReadResult.Text = result == "1C00" || result == "1T00" ? "Error: over length" : result/*result.Substring(2, result.Length - 2)*/;
+                        if (result.Substring(1, result.Length - 1) == "C00")
+                        {
+                            tbReadResult.Text = "Error code - 00: Fail to read";
+                        }
+                        else if (result.Substring(1, result.Length - 1) == "T00")
+                        {
+                            tbReadResult.Text = "Error: Over length";
+                        }
+                        else
+                        {
+                            tbReadResult.Text = result.Substring(2, result.Length - 4);
+                        }
                         //tbReadResult.Text = result;
                         //if (result[2] == 'E')
                         //    szTID = result;
@@ -189,7 +200,9 @@ namespace Reader_Express
                         else
                         {
                             if (memType == "EPC")
+                            {
                                 reader.WriteMemory(MemoryType.EPC, location, szData);
+                            }
                             if (memType == "TID")
                                 reader.WriteMemory(MemoryType.TID, location, szData);
                             if (memType == "User")
