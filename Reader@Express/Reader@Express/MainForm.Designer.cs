@@ -47,6 +47,8 @@
             this.tsBtConnect = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.cbTextWrite = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel10 = new System.Windows.Forms.ToolStripLabel();
+            this.lbCount = new System.Windows.Forms.ToolStripLabel();
             this.tsFunctions = new System.Windows.Forms.ToolStrip();
             this.tsTagType = new System.Windows.Forms.ToolStripSplitButton();
             this.tsMi6C1Gen2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -149,8 +151,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.toolStripLabel10 = new System.Windows.Forms.ToolStripLabel();
-            this.lbCount = new System.Windows.Forms.ToolStripLabel();
             this.tsMain.SuspendLayout();
             this.tsFunctions.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -202,7 +202,7 @@
             // tsModelIDRO900MA
             // 
             this.tsModelIDRO900MA.Name = "tsModelIDRO900MA";
-            this.tsModelIDRO900MA.Size = new System.Drawing.Size(152, 22);
+            this.tsModelIDRO900MA.Size = new System.Drawing.Size(140, 22);
             this.tsModelIDRO900MA.Tag = "IDRO900MA";
             this.tsModelIDRO900MA.Text = "IDRO900MA";
             this.tsModelIDRO900MA.Click += new System.EventHandler(this.tsModelType_Click);
@@ -210,7 +210,7 @@
             // tsModelIDRO900EA
             // 
             this.tsModelIDRO900EA.Name = "tsModelIDRO900EA";
-            this.tsModelIDRO900EA.Size = new System.Drawing.Size(152, 22);
+            this.tsModelIDRO900EA.Size = new System.Drawing.Size(140, 22);
             this.tsModelIDRO900EA.Tag = "IDRO900EA";
             this.tsModelIDRO900EA.Text = "IDRO900EA";
             this.tsModelIDRO900EA.Click += new System.EventHandler(this.tsModelType_Click);
@@ -218,12 +218,12 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(137, 6);
             // 
             // tsModelIDRO900F
             // 
             this.tsModelIDRO900F.Name = "tsModelIDRO900F";
-            this.tsModelIDRO900F.Size = new System.Drawing.Size(152, 22);
+            this.tsModelIDRO900F.Size = new System.Drawing.Size(140, 22);
             this.tsModelIDRO900F.Tag = "IDRO900F";
             this.tsModelIDRO900F.Text = "IDRO900F";
             this.tsModelIDRO900F.Click += new System.EventHandler(this.tsModelType_Click);
@@ -231,7 +231,7 @@
             // tsModelIDRO900F2
             // 
             this.tsModelIDRO900F2.Name = "tsModelIDRO900F2";
-            this.tsModelIDRO900F2.Size = new System.Drawing.Size(152, 22);
+            this.tsModelIDRO900F2.Size = new System.Drawing.Size(140, 22);
             this.tsModelIDRO900F2.Tag = "IDRO900F2";
             this.tsModelIDRO900F2.Text = "IDRO900F2";
             this.tsModelIDRO900F2.Click += new System.EventHandler(this.tsModelType_Click);
@@ -239,7 +239,7 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(137, 6);
             // 
             // toolStripSeparator1
             // 
@@ -265,14 +265,14 @@
             // tsConnectTcpIp
             // 
             this.tsConnectTcpIp.Name = "tsConnectTcpIp";
-            this.tsConnectTcpIp.Size = new System.Drawing.Size(152, 22);
+            this.tsConnectTcpIp.Size = new System.Drawing.Size(113, 22);
             this.tsConnectTcpIp.Text = "TCP/IP";
             this.tsConnectTcpIp.Click += new System.EventHandler(this.tsConnectType_Click);
             // 
             // tsConnectSerial
             // 
             this.tsConnectSerial.Name = "tsConnectSerial";
-            this.tsConnectSerial.Size = new System.Drawing.Size(152, 22);
+            this.tsConnectSerial.Size = new System.Drawing.Size(113, 22);
             this.tsConnectSerial.Text = "SERIAL";
             this.tsConnectSerial.Click += new System.EventHandler(this.tsConnectType_Click);
             // 
@@ -334,6 +334,18 @@
             this.cbTextWrite.Name = "cbTextWrite";
             this.cbTextWrite.Size = new System.Drawing.Size(150, 23);
             this.cbTextWrite.ToolTipText = "Input Text Write to 96 bit ECP Memory";
+            // 
+            // toolStripLabel10
+            // 
+            this.toolStripLabel10.Name = "toolStripLabel10";
+            this.toolStripLabel10.Size = new System.Drawing.Size(61, 20);
+            this.toolStripLabel10.Text = "Tag/Read:";
+            // 
+            // lbCount
+            // 
+            this.lbCount.Name = "lbCount";
+            this.lbCount.Size = new System.Drawing.Size(30, 20);
+            this.lbCount.Text = ".../...";
             // 
             // tsFunctions
             // 
@@ -1166,18 +1178,6 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(46, 20);
             this.textBox4.TabIndex = 12;
-            // 
-            // toolStripLabel10
-            // 
-            this.toolStripLabel10.Name = "toolStripLabel10";
-            this.toolStripLabel10.Size = new System.Drawing.Size(61, 20);
-            this.toolStripLabel10.Text = "Tag/Read:";
-            // 
-            // lbCount
-            // 
-            this.lbCount.Name = "lbCount";
-            this.lbCount.Size = new System.Drawing.Size(30, 20);
-            this.lbCount.Text = ".../...";
             // 
             // mainForm
             // 

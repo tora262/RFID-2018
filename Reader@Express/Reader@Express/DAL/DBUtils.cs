@@ -14,7 +14,7 @@ namespace Reader_Express.DAL
         {
             string host = "localhost";
             int port = 3306;
-            string database = "tag_information";
+            string database = "cryptography";
             string username = "root";
             string password = "1969626298";
 

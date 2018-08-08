@@ -146,8 +146,9 @@ namespace Reader_Express
                     }
                 case EventType.WriteMemory:
                     {
-                        lbWriteResult.Text = navigationPane1.SelectedPageIndex == 1 ? "Success" : "";
-                        lbWriteTextResult.Text = navigationPane1.SelectedPageIndex == 2 ? "Success" : "";
+                        string result = Encoding.ASCII.GetString(e.Payload);
+                        lbWriteResult.Text = navigationPane1.SelectedPageIndex == 1 && result.Substring(1, result.Length - 1) == "C01" ? "01 - Success" : "00 - Other error";
+                        lbWriteTextResult.Text = navigationPane1.SelectedPageIndex == 2 && result.Substring(1, result.Length - 1) == "C01" ? "01 - Success" : "00 - Other error";
                         //string result = Encoding.ASCII.GetString(e.Payload);
                         //lbWriteResult.Text = navigationPane1.SelectedPageIndex == 1 ? result : "";
                         //lbWriteTextResult.Text = navigationPane1.SelectedPageIndex == 2 ? result : "";

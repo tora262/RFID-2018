@@ -8,13 +8,23 @@ using idro.reader.api;
 using System.Runtime.InteropServices;
 using System.Threading;
 using MySql.Data.MySqlClient;
+using Reader_Express.DAL;
+
+struct InventoryRespones
+{
+    public string tagID;
+    public string text;
+    public int rssi;
+    public DateTime time_stamp;
+    public int antenna_number;
+};
 
 namespace Reader_Express
 {
 
     public partial class mainForm : Form
     {
-        
+
         private static uint totalReadCounts1 = 0;
         private static uint totalReadCounts2 = 0;
         private static uint totalReadCounts3 = 0;
@@ -61,7 +71,7 @@ namespace Reader_Express
         public delegate void sendBox(int box);
         public mainForm()
         {
-            
+
             time = DateTime.Now;
             tick = time.Ticks;
             InitializeComponent();
@@ -71,7 +81,7 @@ namespace Reader_Express
             traningTimer.Interval = timeDelay;
             inventoryTimer.Tick += new EventHandler(inventoryTimerEventProcessor);
             inventoryTimer.Interval = inventoryTimeDelay;
-            
+
         }
         // Init Server localhost, Table database is rssi, Port 3306, Id = root, pass=''
         static String connString = "Server=localhost;Database=rfidreader;Port=3306;User ID=root;Password=";
@@ -299,6 +309,7 @@ namespace Reader_Express
                         //following function.
                         string szPayload = Encoding.ASCII.GetString(e.Payload);
                         Console.WriteLine("szPayload: " + szPayload);
+                        InventoryRespones ir = new InventoryRespones();
                         // MessageBox.Show(szPayload);
                         //Many responses can be contained in the generated event and it separates first.
                         //Received data may contain tag ID, set value, response code, etc. according to call 
@@ -329,7 +340,7 @@ namespace Reader_Express
                         Console.WriteLine("******************szRespones*****************");
                         foreach (string szResponse in szResponses)
                         {
-                            Console.WriteLine("Sub String :" + szResponse);
+                            Console.WriteLine("Sub String: " + szResponse);
                             code = szResponse[nPos];
                             this.totalRead += 1;
                             //  code = 'R';
@@ -343,8 +354,13 @@ namespace Reader_Express
                                         {
                                             string hex = szValue.Substring(4, szValue.Length - 4);
                                             szTxt = Reader.MakeTextFromHex(hex).ToString();
+                                            ir.tagID = szValue;
+                                            ir.text = szTxt;
+                                            //ir.antenna_number = Convert.ToInt32(szResponse[0]);
                                             text = szTxt;
                                         }
+                                        DateTime t = DateTime.Now;
+                                        ir.time_stamp = t;
                                         switch (szResponse[0])
                                         {
                                             case '1':
@@ -357,7 +373,8 @@ namespace Reader_Express
                                                 //string temp = ca.substitutionCipherDecryption(ca.transpositionCipherDecryption(list), "ascii.txt");
                                                 //tbText.Text = temp;
                                                 tbText.Text = szTxt;
-                                                tbTime.Text = DateTime.Now.ToString();
+                                                tbTime.Text = t.ToString();
+                                                ir.antenna_number = 1;
                                                 foreach (string value in tagId)
                                                 {
                                                     if (value.CompareTo(szValue) == 0)
@@ -376,16 +393,19 @@ namespace Reader_Express
                                                 tbTagId1.Text = szValue;
                                                 tbPort1.Text = szResponse[0].ToString();
                                                 tbText1.Text = szTxt;
+                                                ir.antenna_number = 2;
                                                 break;
                                             case '3':
                                                 tbTagId2.Text = szValue;
                                                 tbPort2.Text = szResponse[0].ToString();
                                                 tbText2.Text = szTxt;
+                                                ir.antenna_number = 3;
                                                 break;
                                             case '4':
                                                 tbTagId3.Text = szValue;
                                                 tbPort3.Text = szResponse[0].ToString();
                                                 tbText3.Text = szTxt;
+                                                ir.antenna_number = 4;
                                                 break;
                                             default:
                                                 break;
@@ -411,7 +431,7 @@ namespace Reader_Express
                                     {
                                         szValue = szResponse.Substring(szResponse.Length - 2, 2);
                                         rssi = Convert.ToInt32(szValue, 0x10);
-
+                                        ir.rssi = -rssi;
                                         double a = sdk.distanceFromRssi(rssi);
 
                                         lbxResponses.Items.Insert(0, "Rssi " + szResponse[0] + ":" + " -" + rssi);
@@ -485,6 +505,30 @@ namespace Reader_Express
                                 default:
                                     lbxResponses.Items.Insert(1, szResponse);
                                     break;
+                            }
+                            if (ir.tagID != "" || ir.text != "" || (ir.antenna_number > 4 && ir.antenna_number < 1))
+                            {
+                                MySqlConnection conn = DBUtils.GetDBConnection();
+                                conn.Open();
+                                string sql = "Insert into cryptography.inventory_infor(tagID, text, RSSI, time_stamp, antenna_number) values('"
+                                    + ir.tagID + "', '"
+                                    + ir.text + "', '"
+                                    + ir.rssi + "', '"
+                                    + ir.time_stamp + "', '"
+                                    + ir.antenna_number + "');";
+                                try
+                                {
+                                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(e.ToString(), "Add error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                finally
+                                {
+                                    conn.Close();
+                                }
                             }
                         }
                         break;
@@ -567,20 +611,20 @@ namespace Reader_Express
                     {
                         //for (int i = 0; i < a; i++)
                         //{
-                            //cmd = new MySqlCommand("INSERT INTO rfidreader.rfid(TagId ,Rssi1,Rssi2,Rssi3,Rssi4,Text, TotalRead1, TotalRead2,TotalRead3,TotalRead4,Position) VALUE('" + "khanh" + "', '" + arrRssi1[i].ToString() + "','" + "0" + "','" + arrRssi3[i].ToString() + "','" + arrRssi4[i].ToString() + "','" + "4" + "' , '" + totalReadCounts2.ToString() + "','" + totalReadCounts2.ToString() + "','" + totalReadCounts3.ToString() + "','" + totalReadCounts4.ToString() + "','" + "" + "')", conn);
-                            //arrRssi2[i] = 0;
-                            //MySqlDataReader myReader;
-                            //try
-                            //{
-                            //    OpenConnection();
-                            //    myReader = cmd.ExecuteReader();
-                            //    CloseConnection();
-                            //}
-                            //catch (MySqlException ex)
-                            //{
-                            //    MessageBox.Show(ex.Message);
-                            //    CloseConnection();
-                            //}
+                        //cmd = new MySqlCommand("INSERT INTO rfidreader.rfid(TagId ,Rssi1,Rssi2,Rssi3,Rssi4,Text, TotalRead1, TotalRead2,TotalRead3,TotalRead4,Position) VALUE('" + "khanh" + "', '" + arrRssi1[i].ToString() + "','" + "0" + "','" + arrRssi3[i].ToString() + "','" + arrRssi4[i].ToString() + "','" + "4" + "' , '" + totalReadCounts2.ToString() + "','" + totalReadCounts2.ToString() + "','" + totalReadCounts3.ToString() + "','" + totalReadCounts4.ToString() + "','" + "" + "')", conn);
+                        //arrRssi2[i] = 0;
+                        //MySqlDataReader myReader;
+                        //try
+                        //{
+                        //    OpenConnection();
+                        //    myReader = cmd.ExecuteReader();
+                        //    CloseConnection();
+                        //}
+                        //catch (MySqlException ex)
+                        //{
+                        //    MessageBox.Show(ex.Message);
+                        //    CloseConnection();
+                        //}
                         //}
                     }
                     if (totalReadCounts2 >= a && totalReadCounts3 >= a && totalReadCounts4 >= a && totalReadCounts1 < a)
@@ -888,7 +932,7 @@ namespace Reader_Express
                 tbRead.Text = "0"; tbRead1.Text = "0"; tbRead2.Text = "0"; tbRead3.Text = "0";
                 totalReadCounts1 = totalReadCounts2 = totalReadCounts3 = totalReadCounts4 = 0;
             }
-            
+
             if (dt1.Count != 0 && dt2.Count != 0 && dt3.Count != 0 && dt4.Count != 0)
             {
                 box = sdk.locate(dt1[0], dt2[0], dt3[0], dt4[0]);
