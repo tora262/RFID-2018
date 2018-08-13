@@ -189,3 +189,4 @@ D:\F\RFID\RFID-2018\Reader@Express\Reader@Express\obj\Debug\RFID.csproj.Generate
 D:\F\RFID\RFID-2018\Reader@Express\Reader@Express\obj\Debug\Reader@Express.exe.licenses
 D:\F\RFID\RFID-2018\Reader@Express\Reader@Express\obj\Debug\Reader@Express.exe.manifest
 D:\F\RFID\RFID-2018\Reader@Express\Reader@Express\obj\Debug\Reader@Express.application
+D:\F\RFID\RFID-2018\Reader@Express\Reader@Express\obj\Debug\Reader_Express.ShowInventory.resources

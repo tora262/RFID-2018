@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReadMemForm));
             this.cbReadMemType = new System.Windows.Forms.ComboBox();
             this.tbReadLocation = new System.Windows.Forms.NumericUpDown();
             this.tbReadLength = new System.Windows.Forms.NumericUpDown();
@@ -43,9 +44,7 @@
             this.tbWriteData = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.tbWriteLength = new System.Windows.Forms.NumericUpDown();
             this.lbWriteResult = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.cbWriteMemType = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tbWriteLocation = new System.Windows.Forms.NumericUpDown();
@@ -59,21 +58,42 @@
             this.label12 = new System.Windows.Forms.Label();
             this.tbWriteTextLocation = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
+            this.navSaveTag = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.btnExe = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.button1 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.btnClear = new DevExpress.XtraEditors.SimpleButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbReservedLength = new System.Windows.Forms.NumericUpDown();
+            this.tbEPCLength = new System.Windows.Forms.NumericUpDown();
+            this.tbUserLength = new System.Windows.Forms.NumericUpDown();
+            this.tbTIDLength = new System.Windows.Forms.NumericUpDown();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lbxRespone = new System.Windows.Forms.ListBox();
+            this.lbReadTID = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbReadLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbReadLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPane1)).BeginInit();
             this.navigationPane1.SuspendLayout();
             this.navPageRead.SuspendLayout();
             this.navPageWrite.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbWriteLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbWriteLocation)).BeginInit();
             this.navPageWriteText.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbWriteTextLocation)).BeginInit();
+            this.navSaveTag.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbReservedLength)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbEPCLength)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbUserLength)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTIDLength)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbReadMemType
@@ -152,17 +172,18 @@
             this.navigationPane1.Controls.Add(this.navPageRead);
             this.navigationPane1.Controls.Add(this.navPageWrite);
             this.navigationPane1.Controls.Add(this.navPageWriteText);
-            this.navigationPane1.Location = new System.Drawing.Point(13, 13);
+            this.navigationPane1.Controls.Add(this.navSaveTag);
+            this.navigationPane1.Location = new System.Drawing.Point(0, 0);
             this.navigationPane1.Name = "navigationPane1";
             this.navigationPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.navPageRead,
             this.navPageWrite,
-            this.navPageWriteText});
-            this.navigationPane1.RegularSize = new System.Drawing.Size(453, 269);
+            this.navPageWriteText,
+            this.navSaveTag});
+            this.navigationPane1.RegularSize = new System.Drawing.Size(474, 293);
             this.navigationPane1.SelectedPage = this.navPageWrite;
-            this.navigationPane1.Size = new System.Drawing.Size(453, 269);
+            this.navigationPane1.Size = new System.Drawing.Size(474, 293);
             this.navigationPane1.TabIndex = 10;
-            this.navigationPane1.Text = "navigationPane1";
             // 
             // navPageRead
             // 
@@ -176,7 +197,7 @@
             this.navPageRead.Controls.Add(this.tbReadLocation);
             this.navPageRead.Controls.Add(this.label4);
             this.navPageRead.Name = "navPageRead";
-            this.navPageRead.Size = new System.Drawing.Size(366, 209);
+            this.navPageRead.Size = new System.Drawing.Size(376, 233);
             // 
             // tbReadResult
             // 
@@ -187,23 +208,22 @@
             this.tbReadResult.Name = "tbReadResult";
             this.tbReadResult.Size = new System.Drawing.Size(205, 53);
             this.tbReadResult.TabIndex = 9;
-            this.tbReadResult.Text = "";
+            this.tbReadResult.Text = "...";
             // 
             // navPageWrite
             // 
             this.navPageWrite.Caption = "Write";
+            this.navPageWrite.Controls.Add(this.lbReadTID);
             this.navPageWrite.Controls.Add(this.tbWriteData);
             this.navPageWrite.Controls.Add(this.label11);
             this.navPageWrite.Controls.Add(this.label5);
-            this.navPageWrite.Controls.Add(this.tbWriteLength);
             this.navPageWrite.Controls.Add(this.lbWriteResult);
-            this.navPageWrite.Controls.Add(this.label7);
             this.navPageWrite.Controls.Add(this.cbWriteMemType);
             this.navPageWrite.Controls.Add(this.label8);
             this.navPageWrite.Controls.Add(this.tbWriteLocation);
             this.navPageWrite.Controls.Add(this.label9);
             this.navPageWrite.Name = "navPageWrite";
-            this.navPageWrite.Size = new System.Drawing.Size(366, 209);
+            this.navPageWrite.Size = new System.Drawing.Size(376, 233);
             // 
             // tbWriteData
             // 
@@ -233,32 +253,15 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Memory type:";
             // 
-            // tbWriteLength
-            // 
-            this.tbWriteLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWriteLength.Location = new System.Drawing.Point(141, 70);
-            this.tbWriteLength.Name = "tbWriteLength";
-            this.tbWriteLength.Size = new System.Drawing.Size(106, 22);
-            this.tbWriteLength.TabIndex = 12;
-            // 
             // lbWriteResult
             // 
             this.lbWriteResult.AutoSize = true;
             this.lbWriteResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWriteResult.Location = new System.Drawing.Point(141, 145);
             this.lbWriteResult.Name = "lbWriteResult";
-            this.lbWriteResult.Size = new System.Drawing.Size(0, 16);
+            this.lbWriteResult.Size = new System.Drawing.Size(20, 16);
             this.lbWriteResult.TabIndex = 19;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 72);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 16);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Length:";
+            this.lbWriteResult.Text = "...";
             // 
             // cbWriteMemType
             // 
@@ -315,7 +318,7 @@
             this.navPageWriteText.Controls.Add(this.tbWriteTextLocation);
             this.navPageWriteText.Controls.Add(this.label13);
             this.navPageWriteText.Name = "navPageWriteText";
-            this.navPageWriteText.Size = new System.Drawing.Size(366, 209);
+            this.navPageWriteText.Size = new System.Drawing.Size(376, 233);
             // 
             // tbWriteTextData
             // 
@@ -331,9 +334,9 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(18, 99);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 16);
+            this.label10.Size = new System.Drawing.Size(84, 16);
             this.label10.TabIndex = 20;
-            this.label10.Text = "Data:";
+            this.label10.Text = "Text string:";
             // 
             // label6
             // 
@@ -351,8 +354,9 @@
             this.lbWriteTextResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbWriteTextResult.Location = new System.Drawing.Point(144, 140);
             this.lbWriteTextResult.Name = "lbWriteTextResult";
-            this.lbWriteTextResult.Size = new System.Drawing.Size(0, 16);
+            this.lbWriteTextResult.Size = new System.Drawing.Size(20, 16);
             this.lbWriteTextResult.TabIndex = 19;
+            this.lbWriteTextResult.Text = "...";
             // 
             // cbWriteTextMemType
             // 
@@ -386,6 +390,11 @@
             this.tbWriteTextLocation.Name = "tbWriteTextLocation";
             this.tbWriteTextLocation.Size = new System.Drawing.Size(106, 22);
             this.tbWriteTextLocation.TabIndex = 11;
+            this.tbWriteTextLocation.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             // 
             // label13
             // 
@@ -396,6 +405,14 @@
             this.label13.Size = new System.Drawing.Size(56, 16);
             this.label13.TabIndex = 18;
             this.label13.Text = "Result:";
+            // 
+            // navSaveTag
+            // 
+            this.navSaveTag.Caption = "Save the Tag";
+            this.navSaveTag.Controls.Add(this.groupBox2);
+            this.navSaveTag.Controls.Add(this.groupBox1);
+            this.navSaveTag.Name = "navSaveTag";
+            this.navSaveTag.Size = new System.Drawing.Size(376, 233);
             // 
             // btnExe
             // 
@@ -419,25 +436,162 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // button1
+            // toolTip1
             // 
-            this.button1.Location = new System.Drawing.Point(205, 299);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Clear Result";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.toolTip1.Tag = "Length 1 is 4 bytes based-on ASCII packet";
+            // 
+            // ribbonPage2
+            // 
+            this.ribbonPage2.Name = "ribbonPage2";
+            this.ribbonPage2.Text = "ribbonPage2";
+            // 
+            // btnClear
+            // 
+            this.btnClear.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Appearance.Options.UseFont = true;
+            this.btnClear.Location = new System.Drawing.Point(193, 299);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(87, 23);
+            this.btnClear.TabIndex = 13;
+            this.btnClear.Text = "Clear Result";
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tbReservedLength);
+            this.groupBox1.Controls.Add(this.tbEPCLength);
+            this.groupBox1.Controls.Add(this.tbUserLength);
+            this.groupBox1.Controls.Add(this.tbTIDLength);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(0, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(376, 85);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Maximum length of";
+            // 
+            // tbReservedLength
+            // 
+            this.tbReservedLength.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbReservedLength.Location = new System.Drawing.Point(306, 49);
+            this.tbReservedLength.Name = "tbReservedLength";
+            this.tbReservedLength.Size = new System.Drawing.Size(58, 22);
+            this.tbReservedLength.TabIndex = 17;
+            // 
+            // tbEPCLength
+            // 
+            this.tbEPCLength.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbEPCLength.Location = new System.Drawing.Point(306, 14);
+            this.tbEPCLength.Name = "tbEPCLength";
+            this.tbEPCLength.Size = new System.Drawing.Size(58, 22);
+            this.tbEPCLength.TabIndex = 16;
+            // 
+            // tbUserLength
+            // 
+            this.tbUserLength.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUserLength.Location = new System.Drawing.Point(108, 46);
+            this.tbUserLength.Name = "tbUserLength";
+            this.tbUserLength.Size = new System.Drawing.Size(58, 22);
+            this.tbUserLength.TabIndex = 15;
+            // 
+            // tbTIDLength
+            // 
+            this.tbTIDLength.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTIDLength.Location = new System.Drawing.Point(108, 18);
+            this.tbTIDLength.Name = "tbTIDLength";
+            this.tbTIDLength.Size = new System.Drawing.Size(58, 22);
+            this.tbTIDLength.TabIndex = 14;
+            this.tbTIDLength.Value = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(180, 49);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(120, 16);
+            this.label17.TabIndex = 13;
+            this.label17.Text = "Reserved memory";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(180, 18);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(87, 16);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "EPC memory";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(13, 49);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(89, 16);
+            this.label15.TabIndex = 11;
+            this.label15.Text = "User memory";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(13, 20);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 16);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "TID memory";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lbxRespone);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(0, 94);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(376, 139);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Result";
+            // 
+            // lbxRespone
+            // 
+            this.lbxRespone.BackColor = System.Drawing.SystemColors.Control;
+            this.lbxRespone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbxRespone.FormattingEnabled = true;
+            this.lbxRespone.ItemHeight = 16;
+            this.lbxRespone.Location = new System.Drawing.Point(16, 21);
+            this.lbxRespone.Name = "lbxRespone";
+            this.lbxRespone.Size = new System.Drawing.Size(348, 112);
+            this.lbxRespone.TabIndex = 2;
+            // 
+            // lbReadTID
+            // 
+            this.lbReadTID.AutoSize = true;
+            this.lbReadTID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbReadTID.Location = new System.Drawing.Point(144, 165);
+            this.lbReadTID.Name = "lbReadTID";
+            this.lbReadTID.Size = new System.Drawing.Size(0, 16);
+            this.lbReadTID.TabIndex = 24;
             // 
             // ReadMemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 334);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnExe);
             this.Controls.Add(this.navigationPane1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ReadMemForm";
             this.Text = "Access Operation";
             ((System.ComponentModel.ISupportInitialize)(this.tbReadLocation)).EndInit();
@@ -448,12 +602,19 @@
             this.navPageRead.PerformLayout();
             this.navPageWrite.ResumeLayout(false);
             this.navPageWrite.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbWriteLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbWriteLocation)).EndInit();
             this.navPageWriteText.ResumeLayout(false);
             this.navPageWriteText.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbWriteTextLocation)).EndInit();
+            this.navSaveTag.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbReservedLength)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbEPCLength)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbUserLength)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTIDLength)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -472,8 +633,6 @@
         private DevExpress.XtraBars.Navigation.NavigationPage navPageWrite;
         private DevExpress.XtraBars.Navigation.NavigationPage navPageWriteText;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown tbWriteLength;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cbWriteMemType;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown tbWriteLocation;
@@ -493,6 +652,21 @@
         private System.Windows.Forms.Label lbWriteResult;
         private DevExpress.XtraEditors.SimpleButton btnExe;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
+        private DevExpress.XtraEditors.SimpleButton btnClear;
+        private DevExpress.XtraBars.Navigation.NavigationPage navSaveTag;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListBox lbxRespone;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown tbReservedLength;
+        private System.Windows.Forms.NumericUpDown tbEPCLength;
+        private System.Windows.Forms.NumericUpDown tbUserLength;
+        private System.Windows.Forms.NumericUpDown tbTIDLength;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lbReadTID;
     }
 }

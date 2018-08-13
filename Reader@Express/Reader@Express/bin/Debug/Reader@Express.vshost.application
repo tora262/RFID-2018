@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Reader@Express.exe.manifest" size="96247">
+    <dependentAssembly dependencyType="install" codebase="Reader@Express.exe.manifest" size="96860">
       <assemblyIdentity name="Reader@Express.exe" version="1.0.0.4" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>aqCZIDU3QJJBv9O4kdUd0DqMhoXyjhBN8MTr4y9wfHo=</dsig:DigestValue>
+        <dsig:DigestValue>lsIRL7ERsSRlYCSxan2oL3hk5ppSX9RMT/gT+bO5Edk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

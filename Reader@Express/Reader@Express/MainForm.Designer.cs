@@ -151,6 +151,9 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.pnMain = new System.Windows.Forms.Panel();
             this.tsMain.SuspendLayout();
             this.tsFunctions.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -381,7 +384,7 @@
             this.tsFunctions.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.tsFunctions.Location = new System.Drawing.Point(0, 27);
             this.tsFunctions.Name = "tsFunctions";
-            this.tsFunctions.Size = new System.Drawing.Size(108, 477);
+            this.tsFunctions.Size = new System.Drawing.Size(108, 457);
             this.tsFunctions.TabIndex = 0;
             this.tsFunctions.Text = "Function";
             this.tsFunctions.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsFunctions_ItemClicked);
@@ -650,9 +653,9 @@
             // lbxResponses
             // 
             this.lbxResponses.FormattingEnabled = true;
-            this.lbxResponses.Location = new System.Drawing.Point(108, 160);
+            this.lbxResponses.Location = new System.Drawing.Point(108, 155);
             this.lbxResponses.Name = "lbxResponses";
-            this.lbxResponses.Size = new System.Drawing.Size(965, 303);
+            this.lbxResponses.Size = new System.Drawing.Size(421, 316);
             this.lbxResponses.TabIndex = 1;
             this.lbxResponses.SelectedIndexChanged += new System.EventHandler(this.lbxResponses_SelectedIndexChanged);
             // 
@@ -1155,36 +1158,55 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(754, 0);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(46, 20);
+            this.textBox1.Size = new System.Drawing.Size(46, 21);
             this.textBox1.TabIndex = 9;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(806, 0);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(46, 20);
+            this.textBox2.Size = new System.Drawing.Size(46, 21);
             this.textBox2.TabIndex = 10;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(858, 0);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(46, 20);
+            this.textBox3.Size = new System.Drawing.Size(46, 21);
             this.textBox3.TabIndex = 11;
             // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(910, 0);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(46, 20);
+            this.textBox4.Size = new System.Drawing.Size(46, 21);
             this.textBox4.TabIndex = 12;
+            // 
+            // ribbonStatusBar1
+            // 
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 484);
+            this.ribbonStatusBar1.Name = "ribbonStatusBar1";
+            this.ribbonStatusBar1.Ribbon = null;
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1073, 20);
+            // 
+            // ribbonPage2
+            // 
+            this.ribbonPage2.Name = "ribbonPage2";
+            this.ribbonPage2.Text = "ribbonPage2";
+            // 
+            // pnMain
+            // 
+            this.pnMain.Location = new System.Drawing.Point(535, 155);
+            this.pnMain.Name = "pnMain";
+            this.pnMain.Size = new System.Drawing.Size(538, 316);
+            this.pnMain.TabIndex = 16;
             // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1073, 504);
+            this.Controls.Add(this.pnMain);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -1199,9 +1221,11 @@
             this.Controls.Add(this.lbxResponses);
             this.Controls.Add(this.tsFunctions);
             this.Controls.Add(this.tsMain);
+            this.Controls.Add(this.ribbonStatusBar1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "mainForm";
-            this.Text = "Reader@Express V1.0-Lab411";
+            this.Text = "Reader@Express V1.1-Lab411";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
@@ -1346,6 +1370,9 @@
         private System.Windows.Forms.ToolStripTextBox tbTime3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel10;
         private System.Windows.Forms.ToolStripLabel lbCount;
+        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
+        private System.Windows.Forms.Panel pnMain;
     }
 }
 

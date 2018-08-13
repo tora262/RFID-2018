@@ -9,20 +9,21 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using MySql.Data.MySqlClient;
 using Reader_Express.DAL;
+using Reader_Express.OBJECT;
 
-struct InventoryRespones
-{
-    public string tagID;
-    public string text;
-    public int rssi;
-    public DateTime time_stamp;
-    public int antenna_number;
-};
+//struct InventoryRespones
+//{
+//    public string tagID;
+//    public string text;
+//    public int rssi;
+//    public DateTime time_stamp;
+//    public int antenna_number;
+//};
 
 namespace Reader_Express
 {
 
-    public partial class mainForm : Form
+    public partial class mainForm : DevExpress.XtraEditors.XtraForm
     {
 
         private static uint totalReadCounts1 = 0;
@@ -30,6 +31,8 @@ namespace Reader_Express
         private static uint totalReadCounts3 = 0;
         private static uint totalReadCounts4 = 0;
         private uint totalRead;
+        private int numOfTag;
+        //private string currentszValue = null;
         //int pw1 = 50, pw2 = 50, pw3 = 50, pw4 = 50;
         int pw1 = 140, pw2 = 140, pw3 = 140, pw4 = 140;
         //int pw1 = 150, pw2 = 150, pw3 = 150, pw4 = 150;
@@ -81,7 +84,7 @@ namespace Reader_Express
             traningTimer.Interval = timeDelay;
             inventoryTimer.Tick += new EventHandler(inventoryTimerEventProcessor);
             inventoryTimer.Interval = inventoryTimeDelay;
-
+            numOfTag = 0;
         }
         // Init Server localhost, Table database is rssi, Port 3306, Id = root, pass=''
         static String connString = "Server=localhost;Database=rfidreader;Port=3306;User ID=root;Password=";
@@ -206,6 +209,44 @@ namespace Reader_Express
         {
 
         }
+        private void showNewTag(string szValue, int i, int numOfRead)
+        {
+            Console.WriteLine("Total read: " + numOfRead);
+            Panel card = new Panel();
+            card.Controls.Clear();
+            card.Name = szValue;
+            card.BorderStyle = BorderStyle.Fixed3D;
+            card.BackColor = System.Drawing.Color.DarkGray;
+            card.Size = new System.Drawing.Size(300, 100);
+            card.Location = new System.Drawing.Point(5, 5 + 105 * i);
+            Label lbNoteTag = new Label();
+            lbNoteTag.Location = new System.Drawing.Point(5, 5);
+            lbNoteTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 10, System.Drawing.FontStyle.Regular);
+            lbNoteTag.Text = "New detected tag: ";
+            lbNoteTag.AutoSize = true;
+            Label lbTag = new Label();
+            lbTag.Location = new System.Drawing.Point(5, 25);
+            lbTag.Font = new System.Drawing.Font("Segoe UI", 15, System.Drawing.FontStyle.Bold);
+            lbTag.Text = szValue;
+            lbTag.AutoSize = true;
+            Console.WriteLine("tag ID: " + lbTag.Text);
+            Label lbNoteRead = new Label();
+            lbNoteRead.Location = new System.Drawing.Point(5, 55);
+            lbNoteRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 10, System.Drawing.FontStyle.Regular);
+            lbNoteRead.Text = "Total Read: " + numOfRead;
+            Label lbCurrentTimeStamp = new Label();
+            lbCurrentTimeStamp.Text = "Current time stamp: " + DateTime.Now;
+            lbCurrentTimeStamp.Location = new System.Drawing.Point(5, 70);
+            lbCurrentTimeStamp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10, System.Drawing.FontStyle.Regular);
+            lbCurrentTimeStamp.AutoSize = true;
+            lbNoteRead.AutoSize = true;
+            card.Controls.Add(lbNoteTag);
+            card.Controls.Add(lbTag);
+            card.Controls.Add(lbNoteRead);
+            card.Controls.Add(lbCurrentTimeStamp);
+            card.DoubleClick += new System.EventHandler(pnCardReader_doubleClick);
+            pnMain.Controls.Add(card);
+        }
 
         #endregion
 
@@ -229,9 +270,13 @@ namespace Reader_Express
             if (ConnectType == ConnectType.Tcp)
             {
                 reader.Open(tsCbbAddress.Text, 5578);
+                lbxResponses.Items.Add("TCP/IP connected");
             }
             else
+            {
                 reader.Open(tsCbbSerial.Text, 115200);
+                lbxResponses.Items.Add("Serial Port connected");
+            }
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -308,8 +353,8 @@ namespace Reader_Express
                         //Received data are in the byte array (e.payload), it decodes into string using 
                         //following function.
                         string szPayload = Encoding.ASCII.GetString(e.Payload);
-                        Console.WriteLine("szPayload: " + szPayload);
-                        InventoryRespones ir = new InventoryRespones();
+                        //Console.WriteLine("szPayload: " + szPayload);
+                        InventoryInfor ir = new InventoryInfor();
                         // MessageBox.Show(szPayload);
                         //Many responses can be contained in the generated event and it separates first.
                         //Received data may contain tag ID, set value, response code, etc. according to call 
@@ -325,7 +370,7 @@ namespace Reader_Express
                         ///////////////////////////////////////////////////////////////////////////////////////////////////
                         char code;
                         string szValue;
-                        bool bCheckSum = reader.IsFixedType();
+                        bool isFixedType = reader.IsFixedType();
                         bool bMultiPort = reader.IsMultiPort();
                         int nPos = bMultiPort ? 1 : 0;
                         int flag1 = 0;
@@ -334,13 +379,15 @@ namespace Reader_Express
                         Dictionary<string, int> dRss2 = new Dictionary<string, int>();
                         Dictionary<string, int> dRss3 = new Dictionary<string, int>();
                         Dictionary<string, int> dRss4 = new Dictionary<string, int>();
-                        CipherAlgorithm ca = new CipherAlgorithm();
+                        InventoryInforConnUtils invInforConn = new InventoryInforConnUtils();
+                        //tagId.Clear();
+                        //CipherAlgorithm ca = new CipherAlgorithm();
                         // lbxResponses.Items.Insert(0, szPayload);
                         string szTxt = string.Empty;
-                        Console.WriteLine("******************szRespones*****************");
+                        //Console.WriteLine("******************szRespones*****************");
                         foreach (string szResponse in szResponses)
                         {
-                            Console.WriteLine("Sub String: " + szResponse);
+                            //Console.WriteLine("Sub String: " + szResponse);
                             code = szResponse[nPos];
                             this.totalRead += 1;
                             //  code = 'R';
@@ -348,7 +395,7 @@ namespace Reader_Express
                             {
                                 case 'T':
                                     {
-                                        szValue = szResponse.Substring(nPos + 1, szResponse.Length - (nPos + 1 + (bCheckSum ? 2 : 0)));//exclude [#]T/C, CheckSum
+                                        szValue = szResponse.Substring(nPos + 1, szResponse.Length - (nPos + 1 + (isFixedType ? 2 : 0)));//exclude [#]T/C, CheckSum
                                         num5 = szValue;
                                         if (szValue.Length > 4)
                                         {
@@ -375,6 +422,15 @@ namespace Reader_Express
                                                 tbText.Text = szTxt;
                                                 tbTime.Text = t.ToString();
                                                 ir.antenna_number = 1;
+                                                pnMain.Controls.Clear();
+                                                int i = 0;
+                                                foreach (string tag in tagId)
+                                                {
+                                                    int count = invInforConn.countNumOfReadByTagId(tag);
+                                                    Console.WriteLine("count " + tag + ": " + count);
+                                                    showNewTag(tag, i, count);
+                                                    i++;
+                                                }
                                                 foreach (string value in tagId)
                                                 {
                                                     if (value.CompareTo(szValue) == 0)
@@ -386,6 +442,10 @@ namespace Reader_Express
                                                 if (flag1 == 0)
                                                 {
                                                     tagId.Add(szValue);
+                                                    //foreach (string tag in tagId)
+                                                    //{
+                                                    //    Console.WriteLine(tag);
+                                                    //}
 
                                                 }
                                                 break;
@@ -506,29 +566,9 @@ namespace Reader_Express
                                     lbxResponses.Items.Insert(1, szResponse);
                                     break;
                             }
-                            if (ir.tagID != "" || ir.text != "" || (ir.antenna_number > 4 && ir.antenna_number < 1))
+                            if (ir.tagID != null && ir.text != null && (ir.antenna_number > 0 && ir.antenna_number < 4) && ir.rssi !=0)
                             {
-                                MySqlConnection conn = DBUtils.GetDBConnection();
-                                conn.Open();
-                                string sql = "Insert into cryptography.inventory_infor(tagID, text, RSSI, time_stamp, antenna_number) values('"
-                                    + ir.tagID + "', '"
-                                    + ir.text + "', '"
-                                    + ir.rssi + "', '"
-                                    + ir.time_stamp + "', '"
-                                    + ir.antenna_number + "');";
-                                try
-                                {
-                                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                                    cmd.ExecuteNonQuery();
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show(e.ToString(), "Add error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                finally
-                                {
-                                    conn.Close();
-                                }
+                                invInforConn.add(ir.tagID, ir.text, ir.rssi, ir.time_stamp, ir.antenna_number);
                             }
                         }
                         break;
@@ -1023,7 +1063,8 @@ namespace Reader_Express
             //string infor = "";
             ////reader.ReadMemory(MemoryType.Reserved, 0, 1);
             //reader.ReadMemory(MemoryType.EPC, 1, 3);
-            ReadMemForm rmf = new ReadMemForm(0);
+            string addr = ConnectType == idro.reader.api.ConnectType.Tcp? tsCbbAddress.Text : tsCbbSerial.Text;
+            ReadMemForm rmf = new ReadMemForm(0, ConnectType, addr);
             rmf.ShowDialog();
         }
 
@@ -1037,7 +1078,8 @@ namespace Reader_Express
             //}
             //Console.WriteLine(tx);
             //reader.WriteMemory(tx);
-            ReadMemForm rmf = new ReadMemForm(1);
+            string addr = ConnectType == idro.reader.api.ConnectType.Tcp ? tsCbbAddress.Text : tsCbbSerial.Text;
+            ReadMemForm rmf = new ReadMemForm(1, ConnectType, addr);
             rmf.ShowDialog();
         }
 
@@ -1108,7 +1150,6 @@ namespace Reader_Express
             //2. stop inventory
             reader.Command("o", false);//Get Stored data
         }
-
         #endregion
         #region Timer Reconnect...
         System.Windows.Forms.Timer timer = null;
@@ -1359,6 +1400,13 @@ namespace Reader_Express
             reader.SetPortPower(2, 150);
             reader.SetPortPower(3, 150);
             reader.SetPortPower(4, 150);
+        }
+
+        private void pnCardReader_doubleClick(object sender, EventArgs e)
+        {
+            Console.WriteLine();
+            ShowInventory si = new ShowInventory("1C0068656C6C6F20");
+            si.Show();
         }
     }
 
