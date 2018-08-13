@@ -56,7 +56,7 @@ namespace Reader_Express.DAL
                             invInfor.tagID = reader.GetString(0);
                             invInfor.text = reader.GetString(1);
                             invInfor.rssi = reader.GetInt32(2);
-                            invInfor.time_stamp = reader.GetDateTime(3);
+                            invInfor.time_stamp = (DateTime)reader.GetDateTime(3);
                             invInfor.antenna_number = reader.GetInt32(4);
                             invInfors.Add(invInfor);
                         }

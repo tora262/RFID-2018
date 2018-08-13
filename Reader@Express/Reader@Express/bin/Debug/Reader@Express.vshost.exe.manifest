@@ -1581,14 +1581,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Reader@Express.exe" size="594432">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Reader@Express.exe" size="595456">
       <assemblyIdentity name="Reader@Express" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lDdnzuecorbyezrloiPZvk7igrXjUr2o4Y+jOHR2dIA=</dsig:DigestValue>
+        <dsig:DigestValue>w3OciYLnwBE/iEYk3vByljFaPmVcRNZIFZgE4oPEr14=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

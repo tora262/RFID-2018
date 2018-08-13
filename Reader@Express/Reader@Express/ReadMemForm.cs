@@ -33,7 +33,9 @@ namespace Reader_Express
             cbWriteTextMemType.Enabled = false;
             tbWriteTextLocation.Enabled = false;
             navigationPane1.SelectedPageIndex = selectedNavPane;
-
+            progressBarSaveTag.Visible = false;
+            btnStep.Enabled = false;
+            btnStep.Visible = false;
         }
         private void connectReader(ConnectType connectType, string addr)
         {
@@ -69,6 +71,7 @@ namespace Reader_Express
         bool isSaveEPC = false;
         bool isSaveUser = false;
         bool isSaveReserved = false;
+        TagInformation tag = new TagInformation();
         #region P/Invoke...
         [DllImport("User32.dll")]
         static extern Boolean MessageBeep(UInt32 beepType);
@@ -119,13 +122,114 @@ namespace Reader_Express
                             //tbReadResult.Text = result;
                             //if (result[2] == 'E')
                             //    szTID = result;
+                            if (cbReadMemType.Text == "TID")
+                            {
+                                tag.TIDMem = result.Substring(2, result.Length - 4);
+                                Console.WriteLine(tag.TIDMem);
+                                progressBarSave.Increment(25);
+                            }
+                            if (cbReadMemType.Text == "EPC")
+                            {
+                                tag.EPCMem = result.Substring(2, result.Length - 4);
+                                Console.WriteLine(tag.EPCMem);
+                                progressBarSave.Increment(25);
+                            }
+                            if (cbReadMemType.Text == "Reserved")
+                            {
+                                tag.reservedMem = result.Substring(2, result.Length - 4);
+                                Console.WriteLine(tag.reservedMem);
+                                progressBarSave.Increment(25);
+                            }
+                            if (cbReadMemType.Text == "User")
+                            {
+                                tag.userMem = result.Substring(2, result.Length - 4);
+                                Console.WriteLine(tag.userMem);
+                                progressBarSave.Increment(25);
+                            }
+                            if (tag.TIDMem != null && tag.EPCMem != null && tag.userMem != null && tag.reservedMem != null)
+                            {
+                                TagInformationConnUtils connTag = new TagInformationConnUtils();
+                                connTag.addTag(tag.TIDMem, tag.EPCMem, tag.userMem, tag.reservedMem);
+                                MessageBox.Show("Tag was saved.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                tag = new TagInformation();
+                            }
                         }
                         else if(isSaveTag)
                         {
-                            TagInformation tag = new TagInformation();
+                            //if (btnStep.Text == "Read TID")
+                            //{
+                            //    if (result.Substring(1, result.Length - 1) == "C00")
+                            //    {
+                            //        lbxRespone.Items.Add("Error code - 00: Fail to read TID memory.");
+                            //    }
+                            //    else if (result.Substring(1, result.Length - 1) == "T00")
+                            //    {
+                            //        lbxRespone.Items.Add("Error: Over length of TID memory");
+                            //    }
+                            //    else
+                            //    {
+                            //        lbxRespone.Items.Add("Reading TID memory is success.");
+                            //        tag.TIDMem = result.Substring(2, result.Length - 4);
+                            //        Console.WriteLine(tag.TIDMem);
+                            //        progressBarSaveTag.PerformStep();
+                            //    }
+                            //}
+                            //if (btnStep.Text == "Read EPC")
+                            //{
+                            //    if (result.Substring(1, result.Length - 1) == "C00")
+                            //    {
+                            //        lbxRespone.Items.Add("Error code - 00: Fail to read TID memory.");
+                            //    }
+                            //    else if (result.Substring(1, result.Length - 1) == "T00")
+                            //    {
+                            //        lbxRespone.Items.Add("Error: Over length of TID memory");
+                            //    }
+                            //    else
+                            //    {
+                            //        lbxRespone.Items.Add("Reading TID memory is success.");
+                            //        tag.TIDMem = result.Substring(2, result.Length - 4);
+                            //        Console.WriteLine(tag.TIDMem);
+                            //        progressBarSaveTag.PerformStep();
+                            //    }
+                            //}
+                            //if (btnStep.Text == "Read User")
+                            //{
+                            //    if (result.Substring(1, result.Length - 1) == "C00")
+                            //    {
+                            //        lbxRespone.Items.Add("Error code - 00: Fail to read User memory.");
+                            //    }
+                            //    else if (result.Substring(1, result.Length - 1) == "T00")
+                            //    {
+                            //        lbxRespone.Items.Add("Error: Over length of USer memory");
+                            //    }
+                            //    else
+                            //    {
+                            //        lbxRespone.Items.Add("Reading User memory is success.");
+                            //        tag.userMem = result.Substring(2, result.Length - 4);
+                            //        Console.WriteLine(tag.userMem);
+                            //    }
+                            //}
+                            //if (btnStep.Text == "Read Reserved")
+                            //{
+                            //    if (result.Substring(1, result.Length - 1) == "C00")
+                            //    {
+                            //        lbxRespone.Items.Add("Error code - 00: Fail to read Reserved memory.");
+                            //    }
+                            //    else if (result.Substring(1, result.Length - 1) == "T00")
+                            //    {
+                            //        lbxRespone.Items.Add("Error: Over length of Reserved memory");
+                            //    }
+                            //    else
+                            //    {
+                            //        lbxRespone.Items.Add("Reading Reserved memory is success.");
+                            //        tag.reservedMem = result.Substring(2, result.Length - 4);
+                            //        Console.WriteLine(tag.reservedMem);
+                            //    }
+                            //}
                             if (isSaveTID)
                             {
                                 isSaveTID = false;
+                                Console.WriteLine(isSaveTID);
                                 if (result.Substring(1, result.Length - 1) == "C00")
                                 {
                                     lbxRespone.Items.Add("Error code - 00: Fail to read TID memory.");
@@ -137,7 +241,9 @@ namespace Reader_Express
                                 else
                                 {
                                     lbxRespone.Items.Add("Reading TID memory is success.");
-                                    tag.TIDMem  = result.Substring(2, result.Length - 4);
+                                    tag.TIDMem = result.Substring(2, result.Length - 4);
+                                    Console.WriteLine(tag.TIDMem);
+                                    progressBarSaveTag.PerformStep();
                                 }
                             }
                             if (isSaveEPC)
@@ -155,6 +261,7 @@ namespace Reader_Express
                                 {
                                     lbxRespone.Items.Add("Reading EPC memory is success.");
                                     tag.EPCMem = result.Substring(2, result.Length - 4);
+                                    Console.WriteLine(tag.EPCMem);
                                 }
                             }
                             if (isSaveUser)
@@ -172,6 +279,7 @@ namespace Reader_Express
                                 {
                                     lbxRespone.Items.Add("Reading User memory is success.");
                                     tag.userMem = result.Substring(2, result.Length - 4);
+                                    Console.WriteLine(tag.userMem);
                                 }
                             }
                             if (isSaveReserved)
@@ -189,11 +297,20 @@ namespace Reader_Express
                                 {
                                     lbxRespone.Items.Add("Reading Reserved memory is success.");
                                     tag.reservedMem = result.Substring(2, result.Length - 4);
+                                    Console.WriteLine(tag.reservedMem);
                                 }
                             }
-                            TagInformationConnUtils connTag = new TagInformationConnUtils();
-                            connTag.addTag(tag.TIDMem, tag.EPCMem, tag.userMem, tag.reservedMem);
-                            isSaveTag = false;
+                            if (tag.EPCMem != null && tag.TIDMem != null && tag.userMem != null && tag.reservedMem != null)
+                            {
+                                TagInformationConnUtils connTag = new TagInformationConnUtils();
+                                connTag.addTag(tag.TIDMem, tag.EPCMem, tag.userMem, tag.reservedMem);
+                                MessageBox.Show("Tag was saved", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            //else
+                            //{
+                            //    MessageBox.Show("Tag was not saved. Try again later.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //}
+                            //isSaveTag = false;
                         }
                         else if (isWriteMem)
                         {
@@ -266,6 +383,7 @@ namespace Reader_Express
 
         private void btnExe_Click(object sender, EventArgs e)
         {
+            btnStep.Enabled = true;
             switch (navigationPane1.SelectedPageIndex)
             {
                 case 0://Read data
@@ -376,19 +494,21 @@ namespace Reader_Express
                     }
                 case 3://Save Tag
                     {
-                        isSaveTag = true;
-                        isSaveTID = true;
-                        reader.ReadMemory(MemoryType.TID, 0, (uint)tbTIDLength.Value);
-                        Task.Delay(100);
-                        isSaveEPC = true;
-                        reader.ReadMemory(MemoryType.EPC, 0, (uint)tbEPCLength.Value);
-                        Task.Delay(100);
-                        isSaveUser = true;
-                        reader.ReadMemory(MemoryType.User, 0, (uint)tbUserLength.Value);
-                        Task.Delay(100);
-                        isSaveReserved = true;
-                        reader.ReadMemory(MemoryType.Reserved, 0, (uint)tbReservedLength.Value);
-                        Task.Delay(100);
+                        //btnStep.Enabled = true;
+                        //progressBarSaveTag.Visible = true;
+                        //isSaveTag = true;
+                        //isSaveTID = true;
+                        //reader.ReadMemory(MemoryType.TID, 0, (uint)tbTIDLength.Value);
+                        //Task.Delay(500);
+                        //isSaveEPC = true;
+                        //reader.ReadMemory(MemoryType.EPC, 0, (uint)tbEPCLength.Value);
+                        //Task.Delay(500);
+                        //isSaveUser = true;
+                        //reader.ReadMemory(MemoryType.User, 0, (uint)tbUserLength.Value);
+                        //Task.Delay(500);
+                        //isSaveReserved = true;
+                        //reader.ReadMemory(MemoryType.Reserved, 0, (uint)tbReservedLength.Value);
+                        //Task.Delay(500);
                         break;
                     }
             }
@@ -400,6 +520,69 @@ namespace Reader_Express
             lbWriteResult.Text = "...";
             lbWriteTextResult.Text = "...";
             lbxRespone.Controls.Clear();
+        }
+
+        private void navigationPane1_SelectedPageChanged(object sender, DevExpress.XtraBars.Navigation.SelectedPageChangedEventArgs e)
+        {
+            if (navigationPane1.SelectedPageIndex == 3)
+            {
+                btnStep.Visible = true;
+            }
+            else
+            {
+                btnStep.Visible = false;
+            }
+        }
+
+        private void btnStep_Click(object sender, EventArgs e)
+        {
+            //if (btnStep.Text == "Read TID")
+            //{
+            //    reader.ReadMemory(MemoryType.TID, 0, (uint)tbTIDLength.Value);
+            //    btnStep.Text = "Read EPC";
+            //    return;
+            //}
+            //if (btnStep.Text == "Read EPC")
+            //{
+            //    reader.ReadMemory(MemoryType.EPC, 0, (uint)tbEPCLength.Value);
+            //    btnStep.Text = "Read User";
+            //    return;
+            //}
+            //if (btnStep.Text == "Read User")
+            //{
+            //    reader.ReadMemory(MemoryType.User, 0, (uint)tbUserLength.Value);
+            //    btnStep.Text = "Read Reserved";
+            //    return;
+            //}
+            //if (btnStep.Text == "Read Reserved")
+            //{
+            //    reader.ReadMemory(MemoryType.Reserved, 0, (uint)tbReservedLength.Value);
+            //    return;
+            //}
+        }
+
+        private void cbSaveMemType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbReadMemType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cbReadMemType.SelectedIndex)
+            {
+                case 0:
+                    tbReadLength.Value = 8;
+                    break;
+                case 1:
+                    tbReadLength.Value = 12;
+                    break;
+                case 2:
+                    tbReadLength.Value = 32;
+                    break;
+                case 3:
+                    tbReadLength.Value = 4;
+                    break;
+            }
         }
     }
 }

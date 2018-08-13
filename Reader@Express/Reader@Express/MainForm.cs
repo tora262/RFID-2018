@@ -224,11 +224,12 @@ namespace Reader_Express
             lbNoteTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 10, System.Drawing.FontStyle.Regular);
             lbNoteTag.Text = "New detected tag: ";
             lbNoteTag.AutoSize = true;
-            Label lbTag = new Label();
+            LinkLabel lbTag = new LinkLabel();
             lbTag.Location = new System.Drawing.Point(5, 25);
             lbTag.Font = new System.Drawing.Font("Segoe UI", 15, System.Drawing.FontStyle.Bold);
             lbTag.Text = szValue;
             lbTag.AutoSize = true;
+            lbTag.Click += new EventHandler(lbTag_Click);
             Console.WriteLine("tag ID: " + lbTag.Text);
             Label lbNoteRead = new Label();
             lbNoteRead.Location = new System.Drawing.Point(5, 55);
@@ -244,7 +245,7 @@ namespace Reader_Express
             card.Controls.Add(lbTag);
             card.Controls.Add(lbNoteRead);
             card.Controls.Add(lbCurrentTimeStamp);
-            card.DoubleClick += new System.EventHandler(pnCardReader_doubleClick);
+            //card.DoubleClick += new System.EventHandler(pnCardReader_doubleClick);
             pnMain.Controls.Add(card);
         }
 
@@ -1402,10 +1403,11 @@ namespace Reader_Express
             reader.SetPortPower(4, 150);
         }
 
-        private void pnCardReader_doubleClick(object sender, EventArgs e)
+        private void lbTag_Click(object sender, EventArgs e)
         {
-            Console.WriteLine();
-            ShowInventory si = new ShowInventory("1C0068656C6C6F20");
+            string tagID = (sender as LinkLabel).Text;
+            //Console.WriteLine(tagID);
+            ShowInventory si = new ShowInventory(tagID);
             si.Show();
         }
     }

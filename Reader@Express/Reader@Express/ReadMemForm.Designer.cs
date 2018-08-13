@@ -41,6 +41,7 @@
             this.navPageRead = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.tbReadResult = new System.Windows.Forms.RichTextBox();
             this.navPageWrite = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.lbReadTID = new System.Windows.Forms.Label();
             this.tbWriteData = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -59,24 +60,22 @@
             this.tbWriteTextLocation = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.navSaveTag = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lbxRespone = new System.Windows.Forms.ListBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.btnExe = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.btnClear = new DevExpress.XtraEditors.SimpleButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbReservedLength = new System.Windows.Forms.NumericUpDown();
-            this.tbEPCLength = new System.Windows.Forms.NumericUpDown();
-            this.tbUserLength = new System.Windows.Forms.NumericUpDown();
-            this.tbTIDLength = new System.Windows.Forms.NumericUpDown();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.btnStep = new DevExpress.XtraEditors.SimpleButton();
+            this.progressBarSaveTag = new DevExpress.XtraEditors.ProgressBarControl();
+            this.label7 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lbxRespone = new System.Windows.Forms.ListBox();
-            this.lbReadTID = new System.Windows.Forms.Label();
+            this.cbSaveMemType = new System.Windows.Forms.ComboBox();
+            this.tbSaveLength = new System.Windows.Forms.NumericUpDown();
+            this.progressBarSave = new DevExpress.XtraEditors.ProgressBarControl();
             ((System.ComponentModel.ISupportInitialize)(this.tbReadLocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbReadLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationPane1)).BeginInit();
@@ -87,13 +86,12 @@
             this.navPageWriteText.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbWriteTextLocation)).BeginInit();
             this.navSaveTag.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbReservedLength)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbEPCLength)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbUserLength)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbTIDLength)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarSaveTag.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSaveLength)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarSave.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // cbReadMemType
@@ -110,6 +108,7 @@
             this.cbReadMemType.Name = "cbReadMemType";
             this.cbReadMemType.Size = new System.Drawing.Size(106, 24);
             this.cbReadMemType.TabIndex = 0;
+            this.cbReadMemType.SelectedIndexChanged += new System.EventHandler(this.cbReadMemType_SelectedIndexChanged);
             // 
             // tbReadLocation
             // 
@@ -184,10 +183,12 @@
             this.navigationPane1.SelectedPage = this.navPageWrite;
             this.navigationPane1.Size = new System.Drawing.Size(474, 293);
             this.navigationPane1.TabIndex = 10;
+            this.navigationPane1.SelectedPageChanged += new DevExpress.XtraBars.Navigation.SelectedPageChangedEventHandler(this.navigationPane1_SelectedPageChanged);
             // 
             // navPageRead
             // 
             this.navPageRead.Caption = "Read";
+            this.navPageRead.Controls.Add(this.progressBarSave);
             this.navPageRead.Controls.Add(this.tbReadResult);
             this.navPageRead.Controls.Add(this.label1);
             this.navPageRead.Controls.Add(this.tbReadLength);
@@ -224,6 +225,15 @@
             this.navPageWrite.Controls.Add(this.label9);
             this.navPageWrite.Name = "navPageWrite";
             this.navPageWrite.Size = new System.Drawing.Size(376, 233);
+            // 
+            // lbReadTID
+            // 
+            this.lbReadTID.AutoSize = true;
+            this.lbReadTID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbReadTID.Location = new System.Drawing.Point(144, 165);
+            this.lbReadTID.Name = "lbReadTID";
+            this.lbReadTID.Size = new System.Drawing.Size(0, 16);
+            this.lbReadTID.TabIndex = 24;
             // 
             // tbWriteData
             // 
@@ -409,10 +419,47 @@
             // navSaveTag
             // 
             this.navSaveTag.Caption = "Save the Tag";
+            this.navSaveTag.Controls.Add(this.progressBarSaveTag);
             this.navSaveTag.Controls.Add(this.groupBox2);
             this.navSaveTag.Controls.Add(this.groupBox1);
             this.navSaveTag.Name = "navSaveTag";
             this.navSaveTag.Size = new System.Drawing.Size(376, 233);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lbxRespone);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(0, 94);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(376, 109);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Result";
+            // 
+            // lbxRespone
+            // 
+            this.lbxRespone.BackColor = System.Drawing.SystemColors.Control;
+            this.lbxRespone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbxRespone.FormattingEnabled = true;
+            this.lbxRespone.ItemHeight = 16;
+            this.lbxRespone.Location = new System.Drawing.Point(16, 21);
+            this.lbxRespone.Name = "lbxRespone";
+            this.lbxRespone.Size = new System.Drawing.Size(348, 80);
+            this.lbxRespone.TabIndex = 2;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tbSaveLength);
+            this.groupBox1.Controls.Add(this.cbSaveMemType);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(0, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(376, 85);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Your options";
             // 
             // btnExe
             // 
@@ -456,137 +503,81 @@
             this.btnClear.Text = "Clear Result";
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // groupBox1
+            // btnStep
             // 
-            this.groupBox1.Controls.Add(this.tbReservedLength);
-            this.groupBox1.Controls.Add(this.tbEPCLength);
-            this.groupBox1.Controls.Add(this.tbUserLength);
-            this.groupBox1.Controls.Add(this.tbTIDLength);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(376, 85);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Maximum length of";
+            this.btnStep.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStep.Appearance.Options.UseFont = true;
+            this.btnStep.Location = new System.Drawing.Point(100, 299);
+            this.btnStep.Name = "btnStep";
+            this.btnStep.Size = new System.Drawing.Size(87, 23);
+            this.btnStep.TabIndex = 14;
+            this.btnStep.Text = "Read TID";
+            this.btnStep.Click += new System.EventHandler(this.btnStep_Click);
             // 
-            // tbReservedLength
+            // progressBarSaveTag
             // 
-            this.tbReservedLength.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbReservedLength.Location = new System.Drawing.Point(306, 49);
-            this.tbReservedLength.Name = "tbReservedLength";
-            this.tbReservedLength.Size = new System.Drawing.Size(58, 22);
-            this.tbReservedLength.TabIndex = 17;
+            this.progressBarSaveTag.Location = new System.Drawing.Point(11, 209);
+            this.progressBarSaveTag.Name = "progressBarSaveTag";
+            this.progressBarSaveTag.Properties.Step = 4;
+            this.progressBarSaveTag.Size = new System.Drawing.Size(353, 18);
+            this.progressBarSaveTag.TabIndex = 3;
             // 
-            // tbEPCLength
+            // label7
             // 
-            this.tbEPCLength.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbEPCLength.Location = new System.Drawing.Point(306, 14);
-            this.tbEPCLength.Name = "tbEPCLength";
-            this.tbEPCLength.Size = new System.Drawing.Size(58, 22);
-            this.tbEPCLength.TabIndex = 16;
-            // 
-            // tbUserLength
-            // 
-            this.tbUserLength.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUserLength.Location = new System.Drawing.Point(108, 46);
-            this.tbUserLength.Name = "tbUserLength";
-            this.tbUserLength.Size = new System.Drawing.Size(58, 22);
-            this.tbUserLength.TabIndex = 15;
-            // 
-            // tbTIDLength
-            // 
-            this.tbTIDLength.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTIDLength.Location = new System.Drawing.Point(108, 18);
-            this.tbTIDLength.Name = "tbTIDLength";
-            this.tbTIDLength.Size = new System.Drawing.Size(58, 22);
-            this.tbTIDLength.TabIndex = 14;
-            this.tbTIDLength.Value = new decimal(new int[] {
-            12,
-            0,
-            0,
-            0});
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(180, 49);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(120, 16);
-            this.label17.TabIndex = 13;
-            this.label17.Text = "Reserved memory";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(180, 18);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(87, 16);
-            this.label16.TabIndex = 12;
-            this.label16.Text = "EPC memory";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(13, 49);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(89, 16);
-            this.label15.TabIndex = 11;
-            this.label15.Text = "User memory";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(19, 18);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(92, 16);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Memory Type";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(13, 20);
+            this.label14.Location = new System.Drawing.Point(19, 53);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(82, 16);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "TID memory";
+            this.label14.Size = new System.Drawing.Size(48, 16);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Length";
             // 
-            // groupBox2
+            // cbSaveMemType
             // 
-            this.groupBox2.Controls.Add(this.lbxRespone);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(0, 94);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(376, 139);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Result";
+            this.cbSaveMemType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSaveMemType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSaveMemType.FormattingEnabled = true;
+            this.cbSaveMemType.Items.AddRange(new object[] {
+            "EPC",
+            "TID",
+            "User",
+            "Reserved"});
+            this.cbSaveMemType.Location = new System.Drawing.Point(197, 15);
+            this.cbSaveMemType.Name = "cbSaveMemType";
+            this.cbSaveMemType.Size = new System.Drawing.Size(106, 24);
+            this.cbSaveMemType.TabIndex = 2;
+            this.cbSaveMemType.SelectedIndexChanged += new System.EventHandler(this.cbSaveMemType_SelectedIndexChanged);
             // 
-            // lbxRespone
+            // tbSaveLength
             // 
-            this.lbxRespone.BackColor = System.Drawing.SystemColors.Control;
-            this.lbxRespone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lbxRespone.FormattingEnabled = true;
-            this.lbxRespone.ItemHeight = 16;
-            this.lbxRespone.Location = new System.Drawing.Point(16, 21);
-            this.lbxRespone.Name = "lbxRespone";
-            this.lbxRespone.Size = new System.Drawing.Size(348, 112);
-            this.lbxRespone.TabIndex = 2;
+            this.tbSaveLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSaveLength.Location = new System.Drawing.Point(197, 51);
+            this.tbSaveLength.Name = "tbSaveLength";
+            this.tbSaveLength.Size = new System.Drawing.Size(106, 22);
+            this.tbSaveLength.TabIndex = 12;
             // 
-            // lbReadTID
+            // progressBarSave
             // 
-            this.lbReadTID.AutoSize = true;
-            this.lbReadTID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbReadTID.Location = new System.Drawing.Point(144, 165);
-            this.lbReadTID.Name = "lbReadTID";
-            this.lbReadTID.Size = new System.Drawing.Size(0, 16);
-            this.lbReadTID.TabIndex = 24;
+            this.progressBarSave.Location = new System.Drawing.Point(17, 194);
+            this.progressBarSave.Name = "progressBarSave";
+            this.progressBarSave.Properties.Step = 4;
+            this.progressBarSave.Size = new System.Drawing.Size(331, 18);
+            this.progressBarSave.TabIndex = 10;
             // 
             // ReadMemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 334);
+            this.Controls.Add(this.btnStep);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnExe);
@@ -607,14 +598,13 @@
             this.navPageWriteText.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbWriteTextLocation)).EndInit();
             this.navSaveTag.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbReservedLength)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbEPCLength)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbUserLength)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbTIDLength)).EndInit();
-            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarSaveTag.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbSaveLength)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBarSave.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -659,14 +649,13 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox lbxRespone;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.NumericUpDown tbReservedLength;
-        private System.Windows.Forms.NumericUpDown tbEPCLength;
-        private System.Windows.Forms.NumericUpDown tbUserLength;
-        private System.Windows.Forms.NumericUpDown tbTIDLength;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lbReadTID;
+        private DevExpress.XtraEditors.SimpleButton btnStep;
+        private DevExpress.XtraEditors.ProgressBarControl progressBarSaveTag;
+        private System.Windows.Forms.NumericUpDown tbSaveLength;
+        private System.Windows.Forms.ComboBox cbSaveMemType;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label7;
+        private DevExpress.XtraEditors.ProgressBarControl progressBarSave;
     }
 }
