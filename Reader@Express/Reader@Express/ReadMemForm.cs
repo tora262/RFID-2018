@@ -411,8 +411,8 @@ namespace Reader_Express
                     }
                 case 1://Write Data
                     {
-                        isWriteMem = true;
-                        reader.ReadMemory(MemoryType.TID, 0, 12);
+                        //isWriteMem = true;
+                        //reader.ReadMemory(MemoryType.TID, 0, 12);
                         Task.Delay(100);
                         string memType = cbWriteMemType.Text;
                         uint location = (uint)tbWriteLocation.Value;
@@ -446,6 +446,7 @@ namespace Reader_Express
                                     }
                                     hex = string.Empty;
                                     hex = sb.ToString();
+                                    Console.WriteLine(hex);
                                 }
                             }
                             if (memType == "EPC")

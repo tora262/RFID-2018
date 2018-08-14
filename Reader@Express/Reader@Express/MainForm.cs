@@ -1002,6 +1002,7 @@ namespace Reader_Express
         }
         private void tsBtInventoryMulti_Click(object sender, EventArgs e)
         {
+            lbxResponses.Items.Add("Inventory");
             traningTimer.Stop();
             trainingFlag = false;
             totalReadCounts2 = totalReadCounts2 = totalReadCounts3 = totalReadCounts4 = 0;
