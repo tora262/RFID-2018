@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowInventory));
             this.gridControlInventory = new DevExpress.XtraGrid.GridControl();
             this.gridViewInventory = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlInventory)).BeginInit();
@@ -56,6 +57,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(556, 308);
             this.Controls.Add(this.gridControlInventory);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ShowInventory";
             this.Text = "Inventory History";
             ((System.ComponentModel.ISupportInitialize)(this.gridControlInventory)).EndInit();
